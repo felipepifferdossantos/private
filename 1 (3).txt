@@ -1,0 +1,1381 @@
+# Minecraft 1.23.0: Ciência & Magia - Conceito de Mod Expandido
+
+## Visão Geral do Mod
+Este mod ambicioso visa transformar a experiência de Minecraft, introduzindo uma intrincada tapeçaria de elementos científicos avançados (focados em Redstone e automação Steampunk) e sistemas mágicos profundos (alquimia, feitiçaria e rituais). Inspirado por universos como RPGs de fantasia, a complexidade filosófica de Fullmetal Alchemist e a estética detalhada do Steampunk e da era medieval, o mod oferece aos jogadores uma jornada de descoberta, criação e combate contra forças antigas e novas. O objetivo é permitir que os jogadores escolham seu caminho – mestre alquimista, engenheiro mecânico, ou um híbrido de ambos – e moldem o destino de um mundo à beira da corrupção.
+
+## I. Novas Mecânicas de Redstone & Computação
+
+### 1. Distribuidor de Redstone
+* **Explicação Detalhada:** Um bloco central para automação avançada. Ele recebe um sinal de Redstone de entrada e o divide ou replica para múltiplas saídas, com a intensidade de cada saída sendo proporcional à força total do sinal de entrada e ao número de saídas ativas. Isso permite uma gestão de energia de Redstone muito mais granular e eficiente.
+* **Regras/Exemplos:**
+    * **Divisão Proporcional:** Se um sinal de 16 blocos (intensidade máxima) entra em um Distribuidor com 4 saídas ativas, cada saída receberá um sinal de 4 blocos de intensidade (16 / 4 = 4). Se houver 3 saídas, duas receberão 5 e uma receberá 6 (ou uma regra de arredondamento definida).
+    * **Prioridade de Saída:** Pode haver um sistema de prioridade configurável para as saídas, onde algumas saídas recebem mais sinal se a divisão não for exata.
+    * **Modos de Operação:** O Distribuidor pode ter diferentes modos (configuráveis via GUI ou Redstone):
+        * **Modo Divisor:** Divide o sinal igualmente.
+        * **Modo Replicador:** Envia o sinal de entrada completo para todas as saídas (consumindo mais energia ou com um custo de Redstone).
+        * **Modo Filtro:** Só distribui o sinal se a intensidade de entrada for maior que um valor mínimo.
+    * **Uso em Jogo:** Essencial para fazendas automatizadas complexas, sistemas de segurança multicamadas, ou para otimizar o uso de energia em grandes construções Steampunk. Imagine um sistema de irrigação que libera água em diferentes seções de uma fazenda com base na umidade do solo, controlada por um Distribuidor.
+* **Crafting (Conceitual):** Ferro, Redstone, Quartzo do Nether, e um novo componente "Engrenagem de Precisão".
+
+### 2. Sinalizador de Redstone
+* **Explicação Detalhada:** Este bloco não apenas estende o alcance de um sinal de Redstone, mas o amplifica, tornando-o mais forte. A amplificação pode ser linear ou exponencial, dependendo do balanceamento, e é diretamente influenciada pela intensidade do sinal de entrada.
+* **Regras/Exemplos:**
+    * **Fator de Amplificação:** Um Sinalizador pode ter um fator de amplificação fixo (e.g., 1.5x, 2x) ou ajustável. Um sinal de 5 blocos pode se tornar 10, ou um sinal de 10 pode se tornar 15, permitindo ativar mecanismos que exigem uma força mínima específica.
+    * **Custo de Amplificação:** Amplificar o sinal pode ter um custo: consumir Redstone, exigir energia de vapor, ou ter um tempo de recarga.
+    * **Sinal Contínuo vs. Pulso:** Pode ter modos para amplificar um sinal contínuo ou apenas pulsos curtos.
+    * **Uso em Jogo:** Para ativar mecanismos muito distantes, para sobrecarregar circuitos específicos, ou para criar "bombas" de Redstone que liberam um pulso de energia massivo.
+* **Crafting (Conceitual):** Bloco de Redstone, Lâmpada de Redstone, e um "Cristal Resonante" (novo item).
+
+### 3. Medidor (Peso) de Redstone
+* **Explicação Detalhada:** Um sensor que detecta a massa ou "peso" de entidades ou blocos em sua área de efeito e converte essa informação em um sinal de Redstone proporcional.
+* **Regras/Exemplos:**
+    * **Escala de Peso:** Cada item/bloco tem um valor de "peso" predefinido. Um bloco de ouro (peso 15) pode gerar um sinal de 15, enquanto um bloco de madeira (peso 5) gera um sinal de 5. Mobs também têm peso (ex: um porco pode gerar 7, um Golem de Ferro 15).
+    * **Aplicações:**
+        * **Contagem de Itens:** Colocado sob um funil, ele pode contar o número de itens que passam por ele (se cada item tiver um peso unitário).
+        * **Portas de Carga:** Portas que só abrem se um carrinho de minas ou um baú com uma carga específica de itens passar sobre ele.
+        * **Balanças:** Criação de balanças complexas para puzzles ou automação.
+    * **Calibração:** Pode ter uma GUI para calibrar a sensibilidade, permitindo que o jogador defina um limiar de peso para ativar o sinal.
+* **Crafting (Conceitual):** Ferro, Redstone, Placa de Pressão (pesada), e um "Mecanismo de Balança".
+
+### 4. Medidor (Face) de Redstone
+* **Explicação Detalhada:** Um sensor de superfície que analisa a textura e o relevo de um bloco adjacente e gera um sinal de Redstone com base nessa análise. Diferentes texturas (lisas, ásperas, porosas) produzem diferentes intensidades de sinal.
+* **Regras/Exemplos:**
+    * **Valores de Textura:**
+        * Metais polidos (bloco de ferro, ouro): Sinal baixo (ex: 1-3).
+        * Madeira (tronco, tábuas): Sinal médio (ex: 4-7).
+        * Pedra bruta, cascalho, terra: Sinal alto (ex: 8-11).
+        * Obsidiana, Netherrack, blocos corrompidos: Sinal muito alto (ex: 12-15).
+    * **Aplicações:**
+        * **Sistemas de Segurança:** Uma porta secreta que só abre se um bloco de "textura correta" for colocado ao lado do Medidor.
+        * **Classificação de Materiais:** Em linhas de produção, pode diferenciar tipos de blocos que passam por ele.
+        * **Puzzles:** Puzzles ambientais onde o jogador deve encontrar o bloco com a textura correta.
+* **Crafting (Conceitual):** Redstone, Vidro, Sensor de Luz (novo tipo), e um "Microscópio de Redstone".
+
+### 5. Medidor de Atributos
+* **Explicação Detalhada:** Um bloco que permite a "recalibração" dos atributos de itens e equipamentos. Ele funciona com um sistema de "pool de pontos" onde o total de pontos de atributo de um item é fixo, mas sua distribuição pode ser alterada.
+* **Regras/Exemplos:**
+    * **Pool Fixo:** Cada item (espada, picareta, armadura) tem um valor total de "pontos de atributo" predefinido.
+    * **Redistribuição:** O jogador pode usar uma GUI para mover pontos entre diferentes atributos (ex: Ataque, Velocidade de Ataque, Durabilidade, Eficiência de Mineração, Proteção).
+    * **Exemplo:** Uma espada com 10 de Ataque e 1 de Velocidade de Ataque (total de 11 pontos) pode ser reconfigurada para 7 de Ataque e 4 de Velocidade de Ataque, ou 1 de Ataque e 10 de Velocidade de Ataque.
+    * **Custo:** A recalibração pode ter um custo em níveis de XP, Redstone, ou um novo recurso chamado "Essência de Atributo" (obtida de mobs específicos ou rituais).
+    * **Limitações:** Pode haver limites mínimos e máximos para cada atributo, e alguns atributos podem não ser modificáveis em certos itens.
+* **Crafting (Conceitual):** Bloco de Ferro, Redstone, Diamante, e um "Cristal de Calibração".
+
+### 6. Medidor de NBT/Propriedades do Bloco
+* **Explicação Detalhada:** Um bloco de "auditoria" e "registro". Ele monitora uma área ao seu redor e registra informações detalhadas (NBT data) sobre blocos, entidades e interações que ocorrem nessa área. Esses dados são armazenados em um livro inserido no Medidor.
+* **Regras/Exemplos:**
+    * **Informações Registradas:**
+        * **Entidades:** Tipos de mobs, jogadores, seus nomes, coordenadas, e se interagiram com o Medidor.
+        * **Blocos:** Tipos de blocos colocados/quebrados na área, quem os colocou/quebrou.
+        * **Eventos:** Tempo que um item permaneceu no chão, se um baú foi aberto, se um mob spawna.
+    * **Armazenamento:** Um livro em branco é inserido no Medidor. Conforme os eventos ocorrem, o livro é preenchido com registros.
+    * **Reset:** Ao ser quebrado e coletado, o Medidor reseta seus dados internos. O livro preenchido pode ser retirado e lido.
+    * **Uso em Jogo:** Para auditoria de bases (quem pegou o quê, quem entrou onde), rastreamento de mobs para farms específicas, ou para criar armadilhas que reagem a entidades com NBTs específicos (ex: só ativa se um jogador com um item amaldiçoado passar).
+* **Crafting (Conceitual):** Obsidiana, Redstone, Olho de Ender, e um "Mecanismo de Registro".
+
+### 7. Transmutador Alquímico de Redstone
+* **Explicação Detalhada:** O coração da alquimia funcional no mod. Este bloco, quando ativado por uma Pedra Filosofal, pode transformar um tipo de matéria em outro, seguindo a "Lei da Troca Equivalente".
+* **Regras/Exemplos:**
+    * **Lei da Troca Equivalente:** A transmutação não é mágica de "criação do nada". Ela exige que a "massa" ou "valor" dos ingredientes seja equivalente ao do produto. Isso é representado por um "medidor de equivalência" na GUI do Transmutador.
+    * **Exemplo:**
+        * 4 Bambus -> 1 Bloco de Madeira de Carvalho (valor equivalente em biomassa).
+        * Minério de Cobre -> Barra de Cobre (mantém encantamentos ou propriedades do minério original, como "Sorte").
+        * Pedra -> Cascalho (desconstrução).
+        * Terra -> Areia (desconstrução).
+    * **Ativação:** Requer a Pedra Filosofal (item de craft feito de estrela do Wither e 8 Redstones). A Pedra Filosofal tem uma durabilidade limitada e é consumida a cada transmutação.
+    * **Receitas:** O jogador deve "descobrir" as receitas de transmutação através de livros de alquimia ou experimentação.
+    * **Uso em Jogo:** Para otimizar recursos, criar materiais difíceis de obter, ou para desfazer erros de mineração.
+* **Crafting (Conceitual):** Bloco de Ferro, Bloco de Redstone, Obsidiana, e um "Círculo de Transmutação Gravado".
+
+### 8. Amplificador Gravitacional
+* **Explicação Detalhada:** Um dispositivo que pode manipular a força gravitacional em uma área esférica ao seu redor. Sua intensidade e alcance são ajustáveis, geralmente através de um sinal de Redstone.
+* **Regras/Exemplos:**
+    * **Alcance e Intensidade:** Um sinal de Redstone de 1 a 15 pode controlar o alcance (ex: 1 bloco de sinal = 8 blocos de raio, 15 blocos de sinal = 64 blocos de raio) ou a intensidade da gravidade.
+    * **Efeitos:**
+        * **Gravidade Aumentada:** Mobs e jogadores na área são puxados para baixo, tornando-se mais lentos, recebendo dano de queda ao saltar, e itens caem muito mais rápido.
+        * **Gravidade Reduzida/Invertida:** Em modos avançados, pode reduzir a gravidade (permitindo saltos mais altos) ou até invertê-la (fazendo entidades flutuarem ou caírem para cima).
+    * **Uso em Jogo:** Armadilhas para mobs voadores, campos de supressão para jogadores inimigos, auxílio na mineração (fazendo com que blocos pesados caiam mais rápido em um buraco), ou até mesmo para criar plataformas flutuantes temporárias.
+* **Crafting (Conceitual):** Bloco de Ferro, Redstone, Olho de Ender, e um "Núcleo de Campo Magnético".
+
+### 9. Computador Binário
+* **Explicação Detalhada:** Um computador mecânico programável que automatiza e customiza sistemas de Redstone. Ele age como uma "IA neural leve", aprendendo padrões e executando sequências complexas.
+* **Regras/Exemplos:**
+    * **Programação por Padrões:** O jogador "treina" o computador apresentando sequências de sinais Redstone de entrada e as saídas desejadas. O computador "aprende" a replicar esses padrões.
+    * **Interface (GUI):** Uma GUI complexa, talvez com um sistema de "nós" e "conexões" visuais, onde o jogador arrasta e solta blocos lógicos para criar "algoritmos" simples.
+    * **Aplicações:**
+        * **Automação Dinâmica:** Gerenciamento inteligente de fazendas (liga irrigação apenas quando o solo está seco), sistemas de defesa que reagem a diferentes tipos de invasores.
+        * **Sistemas de Energia:** Otimiza a distribuição de energia em uma base com base na demanda, ligando e desligando geradores conforme necessário.
+        * **Puzzles:** Pode ser usado para criar puzzles complexos que exigem lógica binária para serem resolvidos.
+* **Crafting (Conceitual):** Bloco de Ferro, Lapis Lazuli, Redstone, e um "Processador Mecânico".
+
+### 10. Cluster de Redstone
+* **Explicação Detalhada:** Um bloco de "utilidade" que pode replicar as funções de múltiplos outros blocos de Redstone. Em vez de colocar vários repetidores, comparadores e observadores, você pode armazená-los dentro de um Cluster.
+* **Regras/Exemplos:**
+    * **Armazenamento Interno:** Possui um inventário interno onde o jogador pode colocar blocos de Redstone (repetidores, comparadores, observadores, tochas de Redstone, pistões, etc.).
+    * **Ativação de Funções:** Através de uma GUI, o jogador pode "ativar" as funções dos blocos armazenados. O Cluster então se comporta como se todos esses blocos estivessem presentes e conectados.
+    * **Exemplo:** Armazene um repetidor, um comparador e um observador. O Cluster pode então ser configurado para atuar como os três simultaneamente, economizando espaço e simplificando circuitos.
+    * **Limitações:** Pode ter um limite no número de blocos que pode armazenar ou um custo de energia para manter múltiplas funções ativas.
+* **Crafting (Conceitual):** Bloco de Redstone, Quartzo do Nether, e um "Receptáculo de Energia".
+
+### 11. Bobina de Tesla
+* **Explicação Detalhada:** Um dispositivo elétrico que gera pulsos de alta voltagem ou campos eletromagnéticos.
+* **Regras/Exemplos:**
+    * **Funções:**
+        * **Dano Elétrico:** Causa dano elétrico a mobs próximos em um raio, com uma chance de atordoá-los.
+        * **Barreira Elétrica:** Pode criar uma barreira temporária de energia que impede a passagem de mobs ou projéteis.
+        * **Transmissão de Energia (sem fio):** Em um sistema de energia mais complexo, pode transmitir eletricidade sem fio para outros dispositivos.
+    * **Consumo:** Consome muita energia Redstone ou um novo tipo de combustível elétrico (ex: "Célula Voltaica").
+    * **Riscos:** Pode causar dano ao jogador se ele se aproximar demais sem proteção.
+* **Crafting (Conceitual):** Bloco de Cobre, Lapis Lazuli, Redstone, e um "Condensador de Energia".
+
+### 12. Minerador de Redstone
+* **Explicação Detalhada:** Um bloco automatizado projetado para minerar e coletar minério de Redstone de forma eficiente.
+* **Regras/Exemplos:**
+    * **Funcionamento:** Quando alimentado por Redstone ou energia de vapor, ele quebra blocos de minério de Redstone em seu alcance (ex: um cone de 3x3x3 abaixo dele) e armazena os drops em seu inventário interno ou em baús conectados.
+    * **Upgrades:** Pode ser aprimorado com "Brocas de Eficiência" para minerar mais rápido, "Extensores de Alcance" para cobrir uma área maior, ou "Filtros de Minério" para coletar apenas Redstone.
+    * **Uso em Jogo:** Essencial para fazendas de Redstone em larga escala, garantindo um suprimento constante para os sistemas automatizados.
+* **Crafting (Conceitual):** Bloco de Ferro, Picareta de Ferro (consumida), Redstone, e um "Mecanismo de Perfuração".
+
+### 13. Estruturas Steampunk
+* **Explicação Detalhada:** Um conjunto de novos blocos, itens decorativos e modelos de arquitetura que permitem aos jogadores construir em um estilo Steampunk autêntico.
+* **Regras/Exemplos:**
+    * **Blocos:**
+        * **Metais Envelhecidos:** Blocos de ferro, cobre e bronze com texturas de rebites, tubulações e corrosão.
+        * **Madeira Polida:** Tábuas e toras com detalhes de engrenagens ou acabamento metálico.
+        * **Vidro Temperado:** Vidro com molduras de metal e alta resistência.
+        * **Engrenagens Decorativas:** Blocos de engrenagens de diferentes tamanhos que giram visualmente quando alimentados por Redstone ou vapor.
+        * **Tubulações Visíveis:** Blocos de tubulações que podem ser puramente decorativos ou parte de um sistema de transporte de fluidos.
+    * **Itens Decorativos:** Relógios de parede gigantes, barômetros, telégrafos, lâmpadas a gás, painéis de controle com alavancas e botões estilizados.
+    * **Uso em Jogo:** Construção de bases industriais, cidades flutuantes, fábricas automatizadas, ou para dar um toque estético único a qualquer construção.
+
+## II. Novas Criaturas e Itens Mágicos
+
+### 1. Red Wither
+* **Explicação Detalhada:** Uma abominação alquímica, o Red Wither é uma versão do Wither que foi corrompida e amplificada pela Pedra Filosofal. Ele não explode ao ser invocado, mas seu poder de transmutação é uma ameaça constante.
+* **Regras/Exemplos:**
+    * **Invocação:** Semelhante ao Wither normal, mas o bloco central é substituído por um Bloco de Redstone Corrompido (novo bloco) e as cabeças de Wither por "Crânios de Wither Transmutados".
+    * **Poderes:**
+        * **Transmutação Contínua:** Transmuta aleatoriamente blocos ao seu redor em "Matéria Corrompida" (um novo bloco estéril e inquebrável por ferramentas comuns), Carvão, ou Netherrack. Isso pode destruir bases e paisagens.
+        * **Ataques de Corrupção:** Lança projéteis que causam dano e aplicam o efeito de status "Corrupção", que drena a vida do jogador e impede a cura natural.
+        * **Invoca Lacaios Corrompidos:** Invoca pequenos mobs "Red Witherlings" que atacam o jogador.
+    * **Drops:**
+        * **Fragmentos do Coração Corrompido:** Usados em crafts avançados e para aprimorar a Pedra Filosofal.
+        * **Essência de Transmutação:** Um recurso raro para transmutações complexas.
+        * **Crânio de Wither Transmutado:** Mais poderoso que o crânio normal, usado para invocar o Red Wither Storm.
+* **Estratégia de Combate:** Exige uma abordagem diferente do Wither normal, focando em evitar a corrupção do terreno e lidar com os lacaios.
+
+### 2. Elixir da Imortalidade
+* **Explicação Detalhada:** Uma poção lendária que concede uma breve, mas absoluta, invencibilidade.
+* **Regras/Exemplos:**
+    * **Efeito:** Concede o buff "Invencibilidade Total" por 8 segundos. Durante este período, o jogador não recebe nenhum dano de qualquer fonte (ataques, quedas, fogo, veneno, etc.).
+    * **Restrição:** Para balanceamento, apenas 1 Elixir pode ser carregado por inventário (incluindo hotbar e inventário principal). Tentar pegar outro enquanto já possui um fará com que o novo Elixir seja destruído.
+    * **Crafting:** Requer ingredientes extremamente raros e perigosos: um Fragmento do Coração Corrompido do Red Wither, um "Lágrima de Ghast Purificada" (novo item), e um "Orbe de Estabilidade Temporal" (novo item). O craft deve ser feito em um Altar de Alquimia específico.
+* **Uso em Jogo:** Item de último recurso para fugir de situações mortais, sobreviver a ataques de chefes poderosos, ou para realizar manobras arriscadas.
+
+### 3. Red Wither Storm
+* **Explicação Detalhada:** A manifestação máxima da corrupção alquímica, uma criatura titânica e aparentemente invencível, formada pela fusão de múltiplos mobs corrompidos, Pedras Filosofais e um Bloco de Comando. É uma ameaça global que se move pelo mundo.
+* **Regras/Exemplos:**
+    * **Invencibilidade:** Imune a todos os tipos de dano convencionais. Ataques físicos, mágicos e explosões não a afetam.
+    * **Fraqueza Única:** Sua única fraqueza é seu "Coração Pulsante", que deve ser exposto e aprisionado em um "Frasco de Contenção Alquímica" (novo item). Isso exige uma estratégia complexa e o uso combinado de Redstone e Alquimia.
+    * **Comportamento:** Move-se lentamente pelo Overworld, deixando um rastro de destruição. Ela consome biomas inteiros, transformando-os em "Terras Corrompidas" e gerando hordas de mobs mutantes.
+    * **Habilidades:**
+        * **Absorção de Matéria:** Absorve blocos do ambiente para crescer e se curar.
+        * **Tempestade de Corrupção:** Gera uma tempestade de partículas corrompidas que causam dano e aplicam efeitos negativos em uma vasta área.
+        * **Invocações Massivas:** Invoca grandes quantidades de mobs corrompidos e mini-Withers.
+    * **Coração do Wither Storm:** Uma vez aprisionado, o Coração se torna um item de endgame extremamente poderoso, que amplifica os poderes alquímicos e de Redstone do jogador. É a chave para o Portão da Verdade.
+* **Uso em Jogo:** O evento de maior escala do mod, exigindo que os jogadores se preparem extensivamente e trabalhem juntos para contê-lo.
+
+### 4. Bloco de Comando (Limitado)
+* **Explicação Detalhada:** Uma versão especial do Bloco de Comando, obtida através de um desafio único e com certas restrições.
+* **Regras/Exemplos:**
+    * **Obtenção:** O jogador deve atrair o Red Wither para uma área onde ele absorva **todos os tipos de blocos de Redstone existentes no jogo** (repetidor, comparador, observador, tocha, alavanca, botão, pistão, etc.). Após absorver todos, o Red Wither se torna temporariamente vulnerável a um tipo específico de dano (ex: dano de explosão concentrada). Derrotá-lo neste estado raro dropa o Bloco de Comando Limitado.
+    * **Limitações:**
+        * **Alcance Reduzido:** Pode ter um alcance menor para seus comandos (ex: 10 blocos de raio).
+        * **Comandos Restritos:** Não pode executar todos os comandos do Bloco de Comando normal (ex: comandos de teletransporte ou spawn de mobs). Focado em comandos de manipulação de blocos e Redstone.
+        * **Custo de Energia:** Exige energia constante (Redstone ou vapor) para funcionar.
+    * **Uso em Jogo:** Permite automação de tarefas muito específicas e complexas que não seriam possíveis com Redstone comum, como a criação de estruturas automáticas ou a manipulação de blocos em grande escala.
+* **Crafting (Conceitual):** Não é craftável diretamente, apenas um drop raro.
+
+### 5. Criadouro de Homúnculos
+* **Explicação Detalhada:** Um bloco alquímico que, ao ser ativado com os ingredientes corretos, pode criar pequenos lacaios ou "mini-Homúnculos" para auxiliar o jogador.
+* **Regras/Exemplos:**
+    * **Craft:** Feito com o Coração do Wither Storm (aprisionado), uma Pedra Filosofal Aprimorada, e um "Núcleo de Essência Vital" (novo item).
+    * **Criação de Lacaios:**
+        * **Mini-Withers:** Versões menores e mais fracas do Wither, que atacam mobs hostis.
+        * **Homúnculos de Suporte:** Diferentes ingredientes adicionais podem criar Homúnculos com funções variadas:
+            * **Mini-Gula:** Coleta itens automaticamente.
+            * **Mini-Ira:** Causa dano extra aos inimigos.
+            * **Mini-Preguiça:** Atua como um escudo, absorvendo dano.
+            * **Mini-Inveja:** Distrai inimigos com ilusões.
+    * **Limite:** O jogador pode ter um máximo de 8 Homúnculos ativos simultaneamente.
+    * **Durabilidade/Vida:** Os Homúnculos têm vida limitada e podem ser derrotados. Podem ser "recriados" no Criadouro.
+* **Uso em Jogo:** Companheiros de combate, auxiliares em farms, ou para defesa de bases.
+
+### 6. Criador de Quimeras/Híbridos
+* **Explicação Detalhada:** Um bloco alquímico que permite a fusão de dois mobs da mesma espécie (ou espécies compatíveis) para criar uma nova criatura híbrida, herdando características de ambos os "pais".
+* **Regras/Exemplos:**
+    * **Conceito:** "Um corpo de duas vidas". A quimera resultante é um ser único, com um modelo visual que combina os dois mobs originais.
+    * **Exemplos de Fusão:**
+        * **Porco + Creeper = Porco Explosivo:** Um porco pacífico que explode ao morrer (ou ao ser atacado), mas não persegue o jogador.
+        * **Zumbi + Esqueleto = Zumbi Arqueiro:** Um zumbi que ataca de perto, mas também atira flechas.
+        * **Aranha + Enderman = Aranha Teleportadora:** Uma aranha que pode se teleportar para perto do jogador.
+    * **Processo:** Exige que os dois mobs sejam "sacrificados" no Criador, e um custo de energia alquímica (Pedra Filosofal ou Essência).
+    * **Resultados Imprevisíveis:** Pode haver uma chance de criar uma "Quimera Aberrante" (mob hostil e imprevisível) se os ingredientes não forem perfeitos ou se o ritual falhar.
+* **Uso em Jogo:** Para criar mobs utilitários (ex: um "Galinha Mineira" que bota minérios), ou para gerar desafios únicos.
+
+### 7. Varinha Mágica
+* **Explicação Detalhada:** O principal foco para a conjuração de feitiços. A varinha em si não tem poder, mas serve como um receptáculo para Cristais Rúnicos, que contêm a magia.
+* **Regras/Exemplos:**
+    * **Funcionalidade:** O jogador insere um Cristal Rúnico na varinha. Cada cristal concede um feitiço específico.
+    * **Cristais Rúnicos:** Novos itens que podem ser encontrados, craftados ou encantados.
+        * **Cristal de Gelo:** Lança projéteis de gelo que causam lentidão.
+        * **Cristal de Cura:** Conjura um feitiço de cura para o jogador ou aliados.
+        * **Cristal de Fogo:** Lança bolas de fogo.
+        * **Cristal de Teleporte:** Um teleporte de curta distância.
+    * **Custo:** Cada uso da varinha consome durabilidade do Cristal Rúnico ou uma quantidade de "Mana" do jogador (uma nova barra de recursos).
+    * **Aprimoramentos:** A varinha pode ser encantada para aumentar a potência dos feitiços, reduzir o custo de Mana, ou aumentar a durabilidade dos cristais.
+* **Crafting (Conceitual):** Madeira Mágica (nova tora), Ouro, e um "Núcleo de Energia Arcana".
+
+## III. Partes Adicionais (Modo Fullmetal)
+
+### A. Os Homúnculos (Chefes de Elite e Desafios Maiores)
+Cada Homúnculo é um chefe único, representando um dos sete pecados capitais. Eles são mais inteligentes, possuem padrões de ataque complexos e habilidades que refletem sua natureza. Derrotá-los é crucial para avançar na lore principal e obter itens para o confronto final.
+
+#### 1. Pai
+* **Conceito:** A entidade primordial por trás da corrupção alquímica, o criador e mestre dos outros Homúnculos. Sua forma é mutável, e ele pode invocar e combinar os ataques de seus "filhos", adaptando-se a qualquer estratégia do jogador. É o guardião do Portão da Verdade.
+* **Localização/Invocação:** O chefe final da lore principal, invocado no Limbo da Verdade após o jogador coletar todos os Fragmentos do Coração Corrompido dos outros Homúnculos e possuir a Pedra Filosofal Aprimorada.
+* **Ataques Adaptativos (Exemplos Expandidos):**
+    1.  **Chuva de Almas Corrompidas:** Evoca uma barragem de projéteis etéreos que perseguem o jogador, capazes de atravessar blocos e aplicar o efeito "Corrupção". Combina a persistência da Inveja com a escuridão do Orgulho.
+    2.  **Transmutação em Massa Aprimorada:** Altera instantaneamente grandes seções do terreno ao redor, transformando-as em "Matéria Corrompida", criando paredes, poços ou esmagando o jogador. Utiliza a voracidade da Gula e a precisão da Ira.
+    3.  **Barreira de Verdade Inviolável:** Cria um escudo impenetrável que reflete todos os projéteis e anula ataques mágicos por um período. Combina a tenacidade da Ganância com a intangibilidade de Luxúria.
+    4.  **Absorção de Essência Vital:** Drena vida e energia (Mana e XP) de todos os inimigos em um grande raio, restaurando sua própria vida e fortalecendo seus ataques. Uma fusão da Gula por poder e a letargia da Preguiça.
+    5.  **Criação de Quimeras Distorcidas:** Invoca múltiplas Quimeras Aberrantes e versões mais poderosas dos Mini-Homúnculos para lutar ao seu lado, esmagando o jogador com números.
+    6.  **Onda de Desespero e Paralisia:** Emite uma onda de choque psíquica que causa lentidão, cegueira, e um efeito de "Terror" que faz o jogador fugir incontrolavelmente por segundos. Uma fusão da aura do Orgulho e do perfume de Luxúria.
+    7.  **Manipulação Gravitacional Massiva:** Altera a gravidade em uma área gigantesca, levitando o jogador e mobs para o ar antes de esmagá-los no chão, ou puxando-os para perto para ataques corpo a corpo. Baseado no Amplificador Gravitacional.
+    8.  **Reconstituição Veloz e Implacável:** Regenera-se drasticamente de qualquer dano, manifestando a resiliência da Gula e a determinação da Ira. Ele pode se reformar de fragmentos.
+    9.  **Vazio Existencial Aumentado:** Cria um campo de anulação de habilidades em uma área, impedindo o uso de itens mágicos, Redstone e até mesmo alguns ataques físicos. Um buraco negro de energia que consome tudo, inspirado na Boca Voraz da Gula.
+    10. **Forma Primordial do Pecado:** Transforma-se em uma versão colossal e monstruosa, manifestando aspectos físicos de todos os Homúnculos (olhos de Orgulho, garras de Luxúria, boca de Gula, pele de Ganância). Nesta forma, ele lança ataques combinados e devastadores, exigindo que o jogador explore suas fraquezas recém-expostas.
+* **Estratégia de Combate:** A luta contra o Pai é dividida em fases, cada uma com diferentes combinações de ataques dos Homúnculos. O jogador deve aprender a identificar qual Homúnculo o Pai está "imitando" para contra-atacar. O ambiente do Limbo da Verdade pode mudar durante a batalha, com plataformas surgindo ou desaparecendo.
+
+#### 2. Ira (Wrath)
+* **Conceito:** O mais rápido e habilidoso combatente. Focado em ataques físicos brutais e precisos, com uma velocidade sobre-humana e uma fúria incontrolável.
+* **Localização/Invocação:** Encontrado em fortalezas militares em ruínas, arenas de combate subterrâneas, ou invocado por um "Duelo de Honra" em um Altar de Batalha.
+* **Ataques:**
+    1.  **Fúria Cega:** Entra em berserk, aumentando drasticamente o dano e velocidade de ataque, tornando-se temporariamente imune a efeitos de status e com alta resistência a dano.
+    2.  **Corte Veloz (Barragem de Golpes):** Realiza uma série de ataques rápidos e precisos que ignoram uma porcentagem da armadura do jogador e causam sangramento.
+    3.  **Investida Implacável:** Corre em linha reta, empurrando, danificando e atordoando tudo em seu caminho. Pode quebrar blocos frágeis.
+    4.  **Ataque Súbito (Flanqueador):** Teleporta-se para trás do inimigo ou para um ponto cego para um ataque surpresa crítico, com um brilho vermelho antes do teleporte.
+    5.  **Golpe Esmagador:** Desfere um golpe frontal forte que causa dano em área e aplica atordoamento, deixando o jogador vulnerável.
+    6.  **Desarmar Mortal:** Tem uma alta chance de fazer inimigos derrubarem seus equipamentos (arma, escudo, ferramentas) ao ser atingido por um ataque corpo a corpo.
+    7.  **Presença Ameaçadora:** Libera uma aura que reduz o dano e a precisão de ataques de inimigos próximos, além de causar lentidão.
+    8.  **Contra-Ataque Perfeito:** Bloqueia um ataque recebido com sua lâmina e retribui com dano amplificado, com um tempo de reação mínimo.
+    9.  **Caminho da Destruição:** Deixa um rastro de fogo e ruína por onde passa, causando dano contínuo e transformando blocos em Matéria Corrompida.
+    10. **Explosão de Raiva Contida:** Libera uma explosão de energia concentrada que causa dano massivo em área imediata, empurrando inimigos para longe.
+* **Estratégia de Combate:** Ira é um chefe de combate corpo a corpo que exige reflexos rápidos e desvios precisos. O jogador deve aproveitar os momentos de recarga ou vulnerabilidade após seus ataques mais poderosos.
+
+#### 3. Inveja (Envy)
+* **Conceito:** O mestre da disfarce, ilusão e transformação. Capaz de se metamorfosear em qualquer criatura ou jogador, manipulando a percepção e usando táticas furtivas.
+* **Localização/Invocação:** Escondido em locais onde há muita vida (florestas densas, vilas movimentadas, cidades flutuantes), ou invocado por um ritual de "imitacão" que exige sacrifício de mobs variados.
+* **Ataques:**
+    1.  **Mimetismo Perfeito:** Transforma-se em qualquer mob ou jogador, copiando suas habilidades, aparência e até mesmo o nome (se for um jogador), enganando inimigos e causando confusão.
+    2.  **Ataque Furtivo (Invisibilidade):** Torna-se completamente invisível, se aproxima do alvo e desfere um golpe crítico que causa dano extra e aplica veneno.
+    3.  **Chuva de Lâminas Projétil:** Projeta múltiplas lâminas afiadas em várias direções, cobrindo uma grande área e causando dano perfurante.
+    4.  **Cópia Distorcida (Clones Explosivos):** Cria múltiplos clones instáveis de si mesmo ou de outros mobs. Esses clones explodem ao serem destruídos ou após um curto período, causando dano em área.
+    5.  **Drenar Habilidade:** Dispara um projétil que, ao atingir, temporariamente desativa uma habilidade aleatória do inimigo (ex: salto, corrida, ataque, uso de itens) e a usa contra ele.
+    6.  **Ilusão Refletida:** Cria miragens visuais complexas que atraem inimigos para armadilhas, buracos, mobs hostis, ou para fora da área de combate.
+    7.  **Emboscada Vingativa:** Prepara uma armadilha invisível no chão que causa dano explosivo e envenenamento ao ser ativada por um inimigo.
+    8.  **Salto do Predador:** Pula grandes distâncias ou entre superfícies com agilidade, permitindo-lhe flanquear o jogador e surpreender alvos.
+    9.  **Maldição da Imitacão:** Causa dano extra a inimigos que usam itens semelhantes ou com as mesmas estatísticas de um item que Inveja possui, ou de uma forma que ele copiou recentemente.
+    10. **Desespero Contagioso:** Emite uma aura que reduz a moral dos inimigos, diminuindo seu dano de ataque, velocidade de movimento e aumentando a chance de falha em encantamentos.
+* **Estratégia de Combate:** Inveja é um chefe que se baseia em truques e confusão. O jogador deve ser capaz de identificar a verdadeira Inveja entre seus clones e evitar suas armadilhas e habilidades de drenagem.
+
+#### 4. Gula (Gluttony)
+* **Conceito:** Um ser de apetite insaciável, capaz de devorar quase tudo, com uma resistência imensa e ataques de curto alcance devastadores.
+* **Localização/Invocação:** Encontrado em cavernas profundas, pântanos de lodo corrompido, ou invocado por um ritual de "abundância corrompida" que exige sacrifício de grandes quantidades de comida.
+* **Ataques:**
+    1.  **Boca Voraz (Sucção):** Abre sua boca gigantesca, criando um vácuo que suga inimigos para perto e os devora, causando dano massivo e removendo-os temporariamente do campo de batalha (ou os cuspindo em um local perigoso).
+    2.  **Vômito Ácido:** Cospe um fluxo de ácido que corrói armaduras (reduzindo sua durabilidade), causa dano contínuo por veneno e pode quebrar blocos frágeis.
+    3.  **Onda de Choque Gorda:** Bate no chão com força, criando uma onda de choque que empurra inimigos para longe e os desacelera, causando dano em área.
+    4.  **Devorar Bloco (Regeneração):** Consome blocos do ambiente (terra, pedra, até minérios) para regenerar sua própria vida em grandes quantidades. Isso pode destruir o terreno ao redor.
+    5.  **Armadilha Pegajosa:** Deixa um rastro pegajoso ou poças de gosma que prendem inimigos e os retarda drasticamente, tornando-os alvos fáceis.
+    6.  **Regeneração Compulsiva:** Regenera vida rapidamente enquanto está devorando algo ou quando está fora de combate por alguns segundos, tornando-o difícil de matar.
+    7.  **Grito Ensurdecedor:** Emite um grito alto que atordoa e causa cegueira temporária em inimigos próximos, desorientando-os.
+    8.  **Corpo Resistente:** Possui altíssima resistência a danos físicos e mágicos, agindo como um "tanque" que absorve a maioria dos ataques.
+    9.  **Lançar Projéteis de Ossos:** Dispara múltiplos ossos afiados como projéteis em uma rápida sucessão, causando dano perfurante.
+    10. **Exalar Gases Tóxicos:** Libera uma nuvem densa de gás venenoso que causa dano ao longo do tempo, aplica lentidão e pode causar náuseas em área.
+* **Estratégia de Combate:** Gula é um chefe de resistência e dano em área. O jogador deve focar em ataques de longa distância, evitar seus ataques de sucção e interromper sua regeneração.
+
+#### 5. Luxúria (Lust)
+* **Conceito:** Mestre da sedução, manipulação e das lâminas ocultas. Possui agilidade mortal e ataques furtivos que exploram as fraquezas dos inimigos.
+* **Localização/Invocação:** Em mansões abandonadas, florestas enevoadas, ou invocado por um ritual de "desejo proibido" que exige sacrifício de itens valiosos ou raros.
+* **Ataques:**
+    1.  **Beijo Encantador:** Dispara um projétil ou toque que aplica um efeito de charme, fazendo com que mobs ou jogadores aliados ataquem uns aos outros por um tempo, causando caos.
+    2.  **Toque Sedutor (Drenar Vida):** Drena a energia vital e a Mana dos inimigos ao contato, restaurando a própria vida e enfraquecendo o alvo.
+    3.  **Ilusão de Desejo:** Cria miragens visuais complexas que atraem inimigos para armadilhas, buracos, mobs hostis, ou para fora da área de combate, explorando seus desejos mais profundos.
+    4.  **Garras Afiadas (Ataque Rápido):** Ataca com garras retráteis extremamente rápidas e venenosas, causando sangramento e lentidão.
+    5.  **Aura de Atração:** Emite uma aura que puxa inimigos gradualmente para mais perto de si, tornando-os vulneráveis a ataques de curta distância e armadilhas.
+    6.  **Manipulação das Sombras (Clones):** Cria múltiplos clones sombrios que atacam e confundem inimigos, desaparecendo após receber dano ou após um curto período.
+    7.  **Perfume Paralisante:** Libera um aroma em área que paralisa temporariamente inimigos próximos e os deixa vulneráveis a ataques.
+    8.  **Dança Mortal:** Realiza uma série de movimentos graciosos que desviam ataques recebidos enquanto ela ataca múltiplos inimigos em sua volta com suas garras.
+    9.  **Sussurro Hipnótico:** Causa confusão, medo e desorientação nos inimigos próximos, fazendo-os andar sem rumo ou atacar aliados.
+    10. **Escudo de Espinhos de Ferro (Defesa Ofensiva):** Cria um escudo temporário feito de espinhos que danifica quem a ataca fisicamente, refletindo parte do dano.
+* **Estratégia de Combate:** Luxúria é um chefe ágil e enganador. O jogador deve se mover constantemente, evitar ser atraído por suas ilusões e lidar com seus ataques de drenagem e veneno.
+
+#### 6. Preguiça (Sloth)
+* **Conceito:** Incrivelmente forte e resistente, mas extremamente lento, apático e desinteressado. Seus ataques são devastadores, mas geralmente previsíveis devido à sua lentidão.
+* **Localização/Invocação:** Em ruínas subterrâneas profundas, masmorras esquecidas, ou invocado por um ritual de "apatia" que exige a inatividade do jogador por um longo período.
+* **Ataques:**
+    1.  **Carga Lenta e Esmagadora:** Demora para carregar um golpe, mas o ataque é devastador, causa dano em área, quebra blocos e empurra inimigos para longe.
+    2.  **Sono Profundo (Recuperação):** Entra em um sono que o cura rapidamente (até 50% da vida), mas o deixa completamente vulnerável a ataques por alguns segundos. Pode ser interrompido com dano massivo.
+    3.  **Pulso Sonífero:** Libera uma onda de energia em área que faz inimigos próximos caírem no sono por um curto período, deixando-os imóveis e vulneráveis.
+    4.  **Mãos Pesadas (Empurrão):** Golpes lentos, mas que empurram inimigos para longe com grande força (knockback), podendo jogá-los em perigos ambientais.
+    5.  **Defesa Indiferente:** Reduz drasticamente o dano recebido (até 80%) enquanto não se move. Ele se torna quase um bloco inamovível.
+    6.  **Caminho Preguiçoso (Terreno Difícil):** Cria um rastro de lama ou areia movediça que retarda drasticamente inimigos que passam por ele, tornando a movimentação um desafio.
+    7.  **Sopro Bocejante:** Um sopro que causa lentidão, exaustão (reduz a barra de fome) e sonolência nos inimigos à sua frente.
+    8.  **Pancada Adormecedora:** Um golpe que tem uma alta chance de fazer o inimigo atingido dormir imediatamente, deixando-o completamente indefeso.
+    9.  **Aura de Letargia:** Inimigos próximos têm sua velocidade de ataque e movimento significativamente reduzidos, sentindo-se exaustos e incapazes de reagir rapidamente.
+    10. **Desmoronar (Ataque em Área):** Desaba no chão com grande força, causando dano em área, quebrando blocos ao redor e criando obstáculos de escombros que impedem a movimentação.
+* **Estratégia de Combate:** Preguiça é um chefe de "paciência". O jogador deve ser capaz de desviar de seus ataques lentos, mas poderosos, e aproveitar seus momentos de sono para causar dano.
+
+#### 7. Ganância (Greed)
+* **Conceito:** Obsessivo por riqueza e imortalidade, sua pele se torna incrivelmente dura, e ele busca acumular poder e itens.
+* **Localização/Invocação:** Em tesouros escondidos, masmorras cheias de ouro, ou invocado por um ritual de "opulência" que exige sacrifício de grandes quantidades de minérios e gemas.
+* **Ataques:**
+    1.  **Pele Inviolável (Ultimate Shield):** Ativa uma defesa que torna sua pele extremamente dura e resistente a quase todo tipo de dano (95% de redução) por um curto período, refletindo parte do dano recebido.
+    2.  **Crescimento Ósseo (Espinhos):** Cria espinhos ósseos pontiagudos do chão para empalar inimigos que estiverem acima deles, causando dano perfurante e sangramento.
+    3.  **Mãos Preensoras (Agarra e Puxa):** Estende braços longos e flexíveis para agarrar e puxar inimigos para perto, imobilizando-os para um ataque corpo a corpo ou para jogá-los em armadilhas.
+    4.  **Escudo de Bens (Roubo):** Cria um escudo temporário feito de itens roubados de jogadores ou do ambiente. O escudo absorve dano e explode com fragmentos de itens ao ser destruído, causando dano e lentidão.
+    5.  **Drenagem de Recursos (Roubo de Inventário):** Ao entrar em contato físico com o jogador, rouba aleatoriamente itens (ou dinheiro/XP) do inventário do jogador. Itens roubados podem ser recuperados ao derrotá-lo.
+    6.  **Aura da Avidez:** Inimigos próximos perdem a durabilidade de seus itens e armaduras mais rapidamente enquanto estiverem na aura, forçando o jogador a gerenciar seu equipamento.
+    7.  **Punho de Ouro (Drops):** Golpes que deixam cair moedas, pepitas de ouro ou pequenos itens valiosos ao atingir inimigos. Ganância é atraído para coletá-los, o que pode ser uma distração.
+    8.  **Carga de Cobiça:** Investe rapidamente em direção a pilhas de itens largados no chão, danificando quem estiver no caminho.
+    9.  **Chuva de Gemas:** Lança múltiplas gemas afiadas como projéteis que causam dano perfurante e aplicam lentidão.
+    10. **Tesouro Amaldiçoado:** Cria um baú amaldiçoado que explode com gases venenosos ou danos elétricos ao ser aberto por inimigos, ou ao ser quebrado.
+* **Estratégia de Combate:** Ganância é um chefe defensivo e ladrão. O jogador deve ser paciente, esperar o fim de sua "Pele Inviolável" e tentar recuperar seus itens roubados.
+
+#### 8. Orgulho (Pride)
+* **Conceito:** O primogênito e o mais misterioso dos Homúnculos, manipulador das sombras, arrogante e impiedoso. Ele controla a escuridão e a percepção.
+* **Localização/Invocação:** Em áreas escuras e isoladas, templos antigos subterrâneos, ou invocado por um ritual de "arrogância" que exige a derrota de mobs poderosos sem levar dano.
+* **Ataques:**
+    1.  **Manipulação das Sombras (Tentáculos):** Cria e controla múltiplos tentáculos afiados de sombra que emergem do chão ou paredes para atacar à distância, perfurando inimigos e os puxando.
+    2.  **Prisão Sombria:** Prende inimigos em uma cúpula de sombras, impedindo-os de escapar e causando dano gradual por asfixia ou esmagamento.
+    3.  **Olhos Onipresentes:** Invoca múltiplos olhos sombrios flutuantes que rastreiam e atiram projéteis de energia escura que causam dano e cegueira.
+    4.  **Caminho da Soberania:** Cria um rastro de trevas no chão que danifica e amedronta inimigos que o atravessam, fazendo-os fugir em pânico.
+    5.  **Barreira de Arrogância:** Cria um escudo de sombras impenetrável que absorve dano e, ao ser atingido, fortalece os ataques de Orgulho e o torna mais rápido.
+    6.  **Grito de Desdém:** Um grito ensurdecedor que causa medo e faz inimigos fugirem em pânico, além de aplicar surdez temporária.
+    7.  **Devorar Luz:** Apaga tochas, lâmpadas e outras fontes de luz próximas, criando escuridão total para confundir inimigos e fortalecer seus próprios ataques sombrios.
+    8.  **Forma Sombria (Intangibilidade):** Torna-se etéreo e recebe menos dano (50% de redução), enquanto ataca com tentáculos de sombra poderosos. Ele pode atravessar paredes nesta forma.
+    9.  **Punhal Sombrio (Projétil Perfurante):** Lança um punhal de sombra que perfura vários inimigos em linha reta, causando dano em cadeia.
+    10. **Aura de Pura Majestade:** Inimigos próximos têm sua velocidade de movimento e dano reduzidos drasticamente devido à presença avassaladora de Orgulho, que os faz sentir insignificantes e incapazes de lutar.
+* **Estratégia de Combate:** Orgulho é um chefe que controla o campo de batalha e a percepção. O jogador deve usar fontes de luz para enfraquecê-lo e evitar ser pego em suas prisões de sombra.
+
+## IV. Outras Ideias Adicionais
+
+### A. Elementos de Alquimia (Baseados em FMAB - Não Autorais)
+1.  **Conceito da Lei da Troca Equivalente Aprofundada:** Não apenas uma regra de craft, mas uma mecânica de jogo. Transmutações poderosas podem exigir um "custo" não material, como uma porcentagem da vida máxima temporariamente reduzida, um debuff de fome, ou até mesmo um "sacrifício" de XP ou Mana.
+2.  **Círculos de Transmutação Complexos e Rituais:**
+    * **Tipos de Círculos:** Círculos de "Cura", "Crescimento", "Destruição", "Criação de Vida". Cada um com padrões rúnicos específicos (desenhados com Giz Alquímico, minérios especiais ou blocos rúnicos).
+    * **Rituais:** Exigem múltiplos jogadores ou mobs específicos no círculo, além de ingredientes e um tempo de canalização. Falhas podem ter consequências catastróficas (explosões, spawns de mobs hostis).
+3.  **Essência da Vida/Alma (Novo Recurso):** Um recurso super raro, obtido de chefes (Homúnculos), mobs raros ou rituais sombrios. Essencial para transmutações proibidas (como Homúnculos, ressuscitação de mobs, ou criação de vida artificial).
+4.  **Desconstrução Alquímica:** Um processo que permite desconstruir itens ou blocos em seus componentes básicos (ex: picareta de ferro em barras de ferro e varas) ou em uma "essência" universal que pode ser usada em outras transmutações.
+5.  **Reação em Cadeia Alquímica:** Certas transmutações ou rituais podem desencadear efeitos em cascata se realizados em locais específicos (ex: um Desfiladeiro da Cicatriz Alquímica) ou com catalisadores extras. Isso pode ser usado para criar grandes efeitos em área ou para resolver puzzles.
+6.  **Poder de Transmutação Pessoal (Habilidade de Jogador):** Conforme o jogador avança na alquimia (através de XP alquímica ou quests), ele pode ganhar a capacidade de realizar pequenas transmutações (ex: transformar terra em areia) sem um círculo ou Transmutador, usando sua própria Mana ou XP.
+7.  **Alquimia de Cura/Cura com Alquimia:** Rituais alquímicos que podem curar grandes áreas, remover efeitos de status negativos, ou até mesmo "purificar" biomas corrompidos, transmutando toxinas em algo inócuo.
+8.  **Vínculo Alquímico:** A capacidade de "vincular" dois itens ou entidades para que um afete o outro à distância (ex: vincular uma alavanca a uma porta distante, ou uma armadura a um baú para reparo automático).
+9.  **Gemas de Alquimia:** Pequenas gemas que armazenam uma carga de uma transmutação específica e podem ser usadas uma vez para um efeito imediato (ex: Gema de Fogo para uma explosão, Gema de Cura para uma cura instantânea).
+10. **Artefatos Amaldiçoados:** Itens poderosos criados com alquimia proibida. Eles concedem grandes poderes (ex: aumento de dano, invisibilidade), mas com efeitos colaterais negativos para o usuário (ex: dreno de vida contínuo, spawns de mobs hostis perto do jogador).
+
+### B. Elementos de Tecnologia Medieval/Steampunk
+11. **Engrenagens Funcionais e Sistemas de Transmissão:**
+    * **Blocos de Engrenagens:** Pequenas, médias e grandes engrenagens de madeira, ferro, cobre e bronze que giram quando alimentadas por Redstone ou vapor.
+    * **Eixos de Transmissão:** Conectam engrenagens e transferem movimento para máquinas distantes.
+    * **Caixas de Câmbio:** Permitem mudar a velocidade ou direção do movimento.
+12. **Mecanismos de Relojoaria Avançados:**
+    * **Blocos de Relógio de Precisão:** Podem ser programados para emitir sinais Redstone em intervalos extremamente precisos (milissegundos, segundos, minutos, horas), crucial para automação complexa.
+    * **Temporizadores de Pêndulo:** Grandes relógios que liberam um pulso de Redstone a cada oscilação.
+13. **Pistões a Vapor:** Versões mais poderosas dos pistões de Redstone, alimentados por vapor. Capazes de empurrar até 16 blocos (incluindo obsidiana e outros blocos pesados) e com maior força.
+14. **Guindastes e Elevadores a Vapor (Multibloco):** Estruturas complexas que podem levantar ou abaixar blocos, mobs ou jogadores usando energia a vapor. Essenciais para construções verticais e transporte de carga pesada.
+15. **Geradores de Vapor/Caldeiras:** Blocos que queimam combustível (carvão, madeira, "Carvão Corrompido") e água para produzir vapor. O vapor é um novo recurso que alimenta a maioria das máquinas Steampunk.
+16. **Tubulações de Cobre/Ferro:** Blocos que transportam vapor, água ou até mesmo Redstone líquida (novo recurso, Redstone derretida) entre máquinas e geradores. Podem ter válvulas e medidores de pressão.
+17. **Braços Robóticos Automatizados:** Blocos articulados que podem ser programados para quebrar, colocar ou interagir com blocos em um determinado padrão. Podem ser equipados com ferramentas (picaretas, pás) para automação de mineração ou construção.
+18. **Correias Transportadoras:** Blocos que movem itens (e talvez mobs pequenos ou jogadores agachados) de um ponto a outro de forma automatizada, ideal para fazendas e linhas de produção.
+19. **Torretas de Balestra Automatizadas:** Torretas que disparam flechas ou projéteis de ferro quando mobs hostis entram em seu alcance. Podem ser carregadas com diferentes tipos de munição e aprimoradas.
+20. **Armas de Fogo Steampunk:**
+    * **Mosquetes:** Dano alto, recarga lenta, projétil único.
+    * **Pistolas:** Dano médio, recarga mais rápida, projétil único.
+    * **Espingardas:** Dano em área de curta distância.
+    * Exigem pólvora e balas de chumbo (novo item) como munição.
+21. **Balões/Dirigíveis a Vapor (Veículos):** Veículos voadores construídos com madeira, lona, metal e mecanismos a vapor. Permitem exploração aérea de larga escala, transporte de carga e até combate aéreo.
+22. **Máquinas de Mineração de Superfície:** Grandes máquinas (multibloco) que lentamente quebram blocos em uma área predefinida, coletando recursos. Ideais para extração de carvão, pedra, ou até mesmo minérios superficiais.
+23. **Bombas de Água a Vapor:** Blocos que podem sugar água de um local e despejá-la em outro, para automação de canais de irrigação, farms de água ou para drenar áreas.
+24. **Geradores Elétricos Primários:** Máquinas que convertem movimento mecânico (de engrenagens ou turbinas a vapor) em um tipo rudimentar de eletricidade, armazenada em "Células Voltaicas" para alimentar dispositivos elétricos.
+25. **Lâmpadas a Gás e Iluminação Avançada:** Fontes de luz mais eficientes e decorativas, alimentadas por um novo recurso (gás natural, óleo refinado, ou Redstone líquida). Podem ser ligadas/desligadas por Redstone.
+
+### C. Novos Biomas e Estruturas (com Lore Expandida)
+26. **Floresta Lumina (Bioma Mágico):**
+    * **Descrição:** Uma floresta antiga onde a magia flui livremente. As árvores têm folhas que brilham suavemente, a grama emite um leve fulgor, e flores exóticas emitem luz fraca.
+    * **Recursos:** Rica em Essência Arcana, Cristais Rúnicos e plantas mágicas.
+    * **Mobs:** Fadas da Essência (pacíficas), Elementais de Essência (hostis), e criaturas encantadas.
+    * **Estruturas:** Ruínas de antigas torres mágicas e altares de invocação.
+27. **Desfiladeiro da Cicatriz Alquímica (Bioma Corrompido):**
+    * **Descrição:** Um desfiladeiro árido e distorcido, com formações rochosas bizarras e poças de "Lodo Corrompido" (um novo bloco pegajoso e venenoso). O ar é pesado e a luz é filtrada por uma névoa esverdeada.
+    * **Lore:** Resultado de um experimento alquímico cataclísmico que deu errado, deixando uma cicatriz permanente no mundo.
+    * **Recursos:** Minérios corrompidos (que podem ser transmutados), Lodo Corrompido, e vestígios de experimentos alquímicos falhos.
+    * **Mobs:** Quimeras Aberrantes, Alquimistas Loucos, e versões corrompidas de mobs normais.
+    * **Perigos:** Poças de lodo que causam dano e lentidão, gases tóxicos, e spawns aleatórios de mobs hostis.
+28. **Vilas Flutuantes de Cobre (Assentamentos Steampunk):**
+    * **Descrição:** Pequenas cidades no céu, compostas por casas e oficinas construídas em plataformas flutuantes, conectadas por pontes suspensas e dirigíveis. A arquitetura é dominada por cobre, bronze e madeira polida.
+    * **Lore:** Habitadas por engenheiros Steampunk e comerciantes que se isolaram da corrupção do solo.
+    * **NPCs:** Oferecem quests relacionadas à tecnologia, vendem componentes mecânicos e podem ser aliados contra a corrupção.
+    * **Recursos:** Comércio de componentes mecânicos, esquemas de máquinas, e acesso a veículos aéreos.
+29. **Tumba do Homúnculo Adormecido (Masmorra):**
+    * **Descrição:** Uma masmorra subterrânea complexa e labiríntica, onde um dos Homúnculos menores (ex: Preguiça ou Gula) pode ser encontrado, em um estado de hibernação ou aprisionamento.
+    * **Desafios:** Quebra-cabeças baseados em Redstone e alquimia, armadilhas mecânicas, e mobs guardiões.
+    * **Loot:** Artefatos alquímicos, componentes Steampunk raros, e pistas sobre a lore dos Homúnculos.
+30. **Montanhas de Cristal Ressonante (Bioma Mágico):**
+    * **Descrição:** Cadeias de montanhas com formações gigantes de cristais que emitem um brilho e um som fraco, como um coro etéreo. A energia mágica é palpável no ar.
+    * **Recursos:** Principal fonte de Cristais Rúnicos, Essência Arcana concentrada e minérios encantados.
+    * **Mobs:** Elementais de Cristal (hostis), Fadas da Essência.
+    * **Estruturas:** Pequenos altares de cristal e cavernas com depósitos de gemas.
+31. **Laboratório Arcano Submerso (Estrutura Subaquática):**
+    * **Descrição:** Uma estrutura subaquática em ruínas, remanescente de uma civilização antiga que tentou misturar magia e tecnologia. Coberta por algas e corais, mas com vestígios de máquinas e círculos alquímicos.
+    * **Desafios:** Puzzles aquáticos, mobs aquáticos aprimorados, e armadilhas de Redstone submersas.
+    * **Loot:** Livros de alquimia antigos, componentes Steampunk resistentes à água, e artefatos mágicos.
+32. **Fábrica Abandonada de Ferro (Estrutura Steampunk):**
+    * **Descrição:** Uma grande estrutura steampunk em ruínas, com chaminés enferrujadas, engrenagens paradas e tubulações quebradas. Dominada por mobs mecânicos e golem de vapor.
+    * **Recursos:** Abundância de componentes de engrenagens, metal, e "Ferro Envelhecido" (novo bloco).
+    * **Mobs:** Golems de Vapor (hostis), Aranhas de Engrenagem, e autômatos quebrados.
+    * **Perigos:** Máquinas desativadas que podem ser reativadas acidentalmente, poças de óleo, e vapores tóxicos.
+33. **Coliseu do Pecado (Estrutura de Combate):**
+    * **Descrição:** Uma arena de combate antiga onde os jogadores podem invocar ou lutar contra versões enfraquecidas dos Homúnculos para treinar e obter recompensas menores.
+    * **Mecânica:** O jogador pode ativar um ritual no centro do coliseu para invocar um Homúnculo específico.
+    * **Recompensas:** Fragmentos de Essência Pecaminosa (em menor quantidade), XP, e itens de combate.
+34. **Pântano da Transmutação Residual (Bioma Perigoso):**
+    * **Descrição:** Um pântano sombrio e perigoso com neblina constante, onde a matéria é constantemente transmutada de forma instável. A água é turva e o chão é instável.
+    * **Perigos:** Blocos aleatórios surgem e desaparecem, mobs mutantes com habilidades imprevisíveis, e poças de lodo corrompido.
+    * **Recursos:** Materiais transmutados aleatoriamente, Essência de Transmutação, e mobs raros.
+35. **Cidade Subterrânea de Mecanistas (Assentamento NPC):**
+    * **Descrição:** Uma cidade anã (ou de outra raça subterrânea) que vive sob a terra, focada em engenharia e tecnologia. Possui grandes forjas a vapor, máquinas subterrâneas e um sistema de transporte complexo.
+    * **NPCs:** Comerciantes de componentes Steampunk, engenheiros que oferecem quests e ensinam receitas de máquinas.
+    * **Recursos:** Acesso a minérios raros, componentes mecânicos avançados, e um mercado de itens tecnológicos.
+
+### D. Novos Mobs e Chefes (Expandido)
+36. **Golems de Vapor (Guardas Steampunk):**
+    * **Comportamento:** Golems defensivos feitos de ferro e cobre, movidos a vapor. Podem ser pacíficos nas Vilas Flutuantes (agindo como guardas), mas hostis em fábricas abandonadas.
+    * **Ataques:** Socos pesados que causam lentidão, e um ataque de "Sopro de Vapor" que causa dano de fogo e cegueira.
+    * **Drops:** Componentes de engrenagens, barras de ferro/cobre.
+37. **Fadas da Essência (Criaturas Mágicas):**
+    * **Comportamento:** Pequenas criaturas voadoras que emitem luz e um zumbido suave. Se abordadas pacificamente (ex: com mel ou flores mágicas), podem conceder pequenos buffs temporários (velocidade, regeneração) ou levar a locais de recursos mágicos.
+    * **Ataques:** Se provocadas, lançam pequenos projéteis de energia arcana.
+    * **Drops:** Essência Arcana, Pó de Fada (novo item para encantamentos).
+38. **Alquimista Louco (Mini-Chefe Errante):**
+    * **Comportamento:** Um NPC hostil que aparece em biomas alquímicos (Floresta Lumina, Desfiladeiro da Cicatriz). É errático e imprevisível.
+    * **Ataques:** Lança uma variedade de poções (dano, veneno, lentidão), transmuta blocos ao redor (transformando o chão em lodo corrompido ou explosivos), e invoca pequenos Elementais de Essência.
+    * **Drops:** Frascos de poções raras, livros de alquimia, e componentes para o Transmutador.
+39. **Gárgulas de Redstone (Sentinelas Mecânicas):**
+    * **Comportamento:** Estátuas de pedra que ganham vida quando um sinal de Redstone é ativado por perto ou quando um jogador se aproxima. Agem como guardiões de estruturas antigas.
+    * **Ataques:** Mergulham no jogador com ataques corpo a corpo e podem emitir um pulso de Redstone que desativa temporariamente dispositivos próximos.
+    * **Drops:** Fragmentos de Redstone, pedras gravadas.
+40. **Elementais de Essência Pura (Manifestações Mágicas):**
+    * **Comportamento:** Mobs raros e etéreos, feitos de energia arcana pura. Cada tipo (fogo, água, terra, ar) tem ataques elementais específicos e é encontrado em biomas correspondentes.
+    * **Ataques:**
+        * **Fogo:** Lança bolas de fogo e deixa rastro de chamas.
+        * **Água:** Dispara jatos de água que empurram e causam lentidão.
+        * **Terra:** Lança projéteis de pedra e cria pequenas barreiras de terra.
+        * **Ar:** Voa rapidamente, atira projéteis de vento e empurra o jogador.
+    * **Drops:** Essência Arcana concentrada, fragmentos elementais para encantamentos.
+41. **Aranhas de Engrenagem (Ameaças Mecânicas):**
+    * **Comportamento:** Aranhas metálicas que se movem rapidamente em superfícies verticais (paredes, tetos) e podem se prender a elas.
+    * **Ataques:** Mordidas perfurantes que causam sangramento e lentidão, e podem disparar teias de metal que imobilizam o jogador.
+    * **Drops:** Componentes de engrenagens, fios de metal.
+42. **Lorde da Gravidade (Chefe Opcional):**
+    * **Comportamento:** Um mob poderoso que flutua e manipula a gravidade local.
+    * **Ataques:**
+        * **Pulso Gravitacional:** Levita jogadores e mobs para o ar antes de esmagá-los no chão.
+        * **Atração/Repulsão:** Puxa inimigos para perto para ataques corpo a corpo ou os empurra para longe.
+        * **Escudo de Blocos:** Atrai blocos do ambiente para formar um escudo temporário.
+    * **Drops:** Núcleo de Campo Magnético, Essência Gravitacional (novo item).
+43. **Quimeras Aberrantes (Falhas Experimentais):**
+    * **Comportamento:** Quimeras criadas no Criador de Quimeras que deram errado. São imprevisíveis, com ataques aleatórios dos mobs originais e alta resistência. Hostis e agressivas.
+    * **Ataques:** Podem ter uma combinação de ataques (ex: cuspir veneno como aranha, investir como javali).
+    * **Drops:** Fragmentos de carne mutante, Essência Aberrante (novo item).
+44. **Necromante Alquímico (Mob Mágico Hostil):**
+    * **Comportamento:** Um mob de longa distância que pode reviver mobs derrotados como lacaios temporários e lançar maldições.
+    * **Ataques:** Lança projéteis de energia escura que causam dano e aplicam "Maldição da Podridão" (drena vida do jogador).
+    * **Habilidades:** Revive esqueletos e zumbis próximos para lutar por ele.
+    * **Drops:** Livros de feitiços sombrios, Essência Necromântica.
+45. **Centauros Steampunk (Montarias/Inimigos):**
+    * **Comportamento:** Meio humanos, meio máquinas, armados com armas de fogo de cano curto. Podem ser hostis em fábricas, mas domesticáveis em Vilas Flutuantes.
+    * **Ataques:** Disparam projéteis de chumbo e investem contra os jogadores.
+    * **Domesticacão:** Podem ser domesticados com "Óleo de Engrenagem" (novo item) e usados como montarias rápidas e armadas.
+    * **Drops:** Componentes mecânicos, pólvora.
+
+### E. Itens e Equipamentos (Expandido)
+46. **Armadura do Alquimista Elemental:**
+    * **Set Bonus:** Oferece resistência a diferentes tipos de dano elemental (fogo, gelo, eletricidade) e um bônus na velocidade de conjuração de feitiços.
+    * **Habilidade Ativa (peitoral):** Pode ativar um escudo elemental temporário que absorve dano de um tipo específico.
+    * **Crafting:** Exige Essências Elementais e metais encantados.
+47. **Espada da Ressonância:**
+    * **Habilidade:** Ganha dano extra proporcional à intensidade dos sinais de Redstone próximos ao jogador. Ideal para combate em bases automatizadas.
+    * **Habilidade Ativa:** Pode emitir um pulso de Redstone que ativa mecanismos próximos.
+    * **Crafting:** Diamante, Redstone, e um Cristal Ressonante.
+48. **Escudo Defletor de Vapor:**
+    * **Habilidade:** Quando ativado (com energia a vapor), pode refletir uma porcentagem dos projéteis recebidos de volta aos atacantes.
+    * **Custo:** Consome vapor a cada reflexão.
+    * **Crafting:** Ferro, Cobre, e um "Mecanismo de Pressão".
+49. **Luvas do Manipulador de Engrenagens:**
+    * **Habilidade:** Aumenta a velocidade de interação com blocos de Redstone e máquinas steampunk.
+    * **Habilidade Ativa:** Permite que o jogador gire engrenagens manualmente (acelerando máquinas) ou desative temporariamente Redstone em uma pequena área.
+    * **Crafting:** Couro, Ferro, e pequenas engrenagens.
+50. **Botas de Levitação Propulsora:**
+    * **Habilidade:** Permitem ao jogador flutuar por curtos períodos ou dar saltos aprimorados.
+    * **Custo:** Consomem energia (Células Voltaicas) ou combustível (Óleo Refinado).
+    * **Crafting:** Couro, Ferro, e "Jatos de Vapor Miniatura".
+51. **Elmo do Vidente Arcana:**
+    * **Habilidade:** Quando equipado, revela auras de inimigos (fracos, fortes, tipo de dano), a localização de itens raros próximos ou pontos fracos de chefes.
+    * **Custo:** Consome Mana lentamente.
+    * **Crafting:** Ouro, Cristal Rúnico, e Olho de Ender.
+52. **Picareta de Transmutação Essencial:**
+    * **Habilidade:** Ao minerar, tem uma chance de transmutar o bloco minerado em outro recurso relacionado (ex: pedra em minério bruto, madeira em carvão vegetal, areia em vidro).
+    * **Custo:** Consome durabilidade rapidamente ou exige uma pequena quantidade de Essência de Transmutação.
+    * **Crafting:** Diamante, Pedra Filosofal (parcialmente consumida), e um "Núcleo de Transmutação".
+53. **Arma de Raios Tesla Portátil:**
+    * **Habilidade:** Uma arma de mão que dispara pulsos elétricos, atordoando mobs e causando dano elétrico em cadeia.
+    * **Munição:** Usa Células Voltaicas como munição.
+    * **Crafting:** Cobre, Redstone, e uma Bobina de Tesla Miniatura.
+54. **Glaive de Gravidade:**
+    * **Habilidade:** Uma arma de haste que pode empurrar (knockback forte) ou puxar (atrair) inimigos com seus ataques, útil para controle de multidões e manipulação de posicionamento.
+    * **Habilidade Ativa:** Cria um pequeno campo gravitacional que desacelera inimigos.
+    * **Crafting:** Obsidiana, Ferro, e um Fragmento Gravitacional.
+55. **Pingente de Ressonância Mágica:**
+    * **Habilidade:** Um amuleto que armazena uma pequena quantidade de energia mágica do ambiente. Pode ser consumido para ativar um feitiço uma vez, sem custo de Mana do jogador.
+    * **Recarga:** Recarrega lentamente ao longo do tempo ou ao derrotar mobs mágicos.
+    * **Crafting:** Ouro, Essência Arcana, e um Cristal Rúnico pequeno.
+56. **Capa de Camuflagem Arcana:**
+    * **Habilidade:** Ao ativar, torna o jogador quase invisível em biomas mágicos ou em locais com baixa iluminação.
+    * **Custo:** Consome Essência Arcana continuamente enquanto ativo.
+    * **Crafting:** Lã escura, Essência Arcana, e um "Tecido Ilusório".
+57. **Saco sem Fundo da Gula:**
+    * **Habilidade:** Um item de inventário que expande infinitamente para itens específicos (ex: alimentos, minérios comuns, blocos de terra).
+    * **Efeito Colateral:** Causa um efeito de "Exaustão Compulsiva" no jogador ao ser usado (reduz a barra de fome rapidamente).
+    * **Crafting:** Couro, Coração da Gula (ou Fragmento), e um "Tecido Dimensional".
+58. **Cajado da Inveja (Cópia de Habilidade):**
+    * **Habilidade:** Permite ao jogador copiar temporariamente uma habilidade primária de um mob (ex: salto de aranha, investida de zumbi, cuspe de ghast) por um curto período.
+    * **Custo:** Consome Mana e tem um tempo de recarga.
+    * **Crafting:** Madeira Mágica, Olho de Aranha, e Essência da Inveja.
+59. **Manopla da Ira Bestial:**
+    * **Habilidade:** Uma manopla que aumenta drasticamente o dano de ataque do jogador e a velocidade ao receber dano.
+    * **Efeito Colateral:** Também aumenta o dano recebido pelo jogador (efeito "Fúria Descontrolada").
+    * **Crafting:** Ferro, Fragmento da Ira, e um "Núcleo de Fúria".
+60. **Amuleto do Sono Profundo:**
+    * **Habilidade:** Um amuleto que permite que o jogador "durma" em qualquer lugar (mesmo sem cama), curando-o rapidamente e removendo efeitos negativos.
+    * **Vulnerabilidade:** O jogador fica completamente indefeso durante o sono, e pode ser acordado por ataques.
+    * **Crafting:** Ouro, Essência da Preguiça, e um "Cristal Sonífero".
+
+## V. Lore e História Jogável/Modificável (Expandido)
+
+### Título da Lore: O Legado do Portão e a Corrupção Alquímica
+
+#### A. Rota Principal da História (Campanha)
+
+**Capítulo 1: O Despertar no Limbo**
+* **Início do Jogo:** O jogador não começa no Overworld, mas em uma nova dimensão etérea e desolada: **"O Limbo da Verdade"**. Este plano é uma paisagem fragmentada, com ilhas flutuantes e ruínas de uma civilização desconhecida. No centro, imponente e misterioso, ergue-se **"O Portão da Verdade"**.
+* **Primeiras Quests (Tutorial):** O jogador encontra mensagens antigas e fragmentos de tecnologia e alquimia. Pequenos puzzles de Redstone (básico) e transmutações simples são introduzidos, guiando o jogador a entender os princípios fundamentais do mod. A atmosfera é de isolamento e mistério.
+* **O Encontro com o Portão:** Ao se aproximar do Portão da Verdade, o jogador é brevemente exposto a visões caóticas de conhecimento proibido e poder avassalador. Uma voz ancestral sussurra enigmas sobre "troca equivalente" e "o preço da verdade". A experiência é dolorosa e desorientadora, e o jogador é violentamente expelido para o Overworld, perdendo a maioria de suas memórias do Limbo e do Portão, restando apenas um vago sentimento de propósito.
+* **Objetivo Inicial:** Sobreviver no Overworld e buscar pistas sobre o que aconteceu, como retornar ao Portão da Verdade e por que ele foi lançado para fora.
+
+**Capítulo 2: Os Ecos do Passado (Overworld)**
+* **Exploração e Descoberta:** O jogador emerge em um Overworld que parece familiar, mas rapidamente descobre anomalias que indicam uma história esquecida:
+    * **"Cicratrizes Alquímicas":** Pequenas áreas do bioma Desfiladeiro da Cicatriz Alquímica, onde a terra está distorcida, com blocos corrompidos e poças de lodo.
+    * **Fragmentos Steampunk:** Resquícios de máquinas antigas, engrenagens enferrujadas e tubulações quebradas em florestas ou montanhas.
+    * **Sussurros dos Anciãos:** Mensagens enigmáticas em tablets de pedra, livros antigos e diários encontrados em ruínas, que falam de uma "era de ouro da Alquimia e Tecnologia" e de um "Grande Experimento" que deu errado, resultando na "Corrupção".
+* **Primeiros Contatos (NPCs):** O jogador encontra NPCs sobreviventes que foram afetados pela Corrupção ou que buscam entender o passado:
+    * **Alquimistas Exilados:** Oferecem side-quests sobre como purificar biomas e criar antídotos.
+    * **Engenheiros Loucos:** Buscam peças para suas máquinas quebradas e oferecem quests sobre automação.
+    * **Aldeões Assustados:** Pedem ajuda para defender suas vilas de mobs mutantes.
+* **Descoberta da Redstone Avançada:** Através de blueprints e tutoriais obtidos em ruínas, o jogador aprende a criar os primeiros blocos de Redstone avançada (Distribuidor, Sinalizador, Medidores), começando a entender como a tecnologia antiga funcionava.
+
+**Capítulo 3: A Ascensão da Corrupção**
+* **Invasões da Matéria Corrompida:** A Corrupção alquímica começa a se espalhar mais ativamente. Pequenos focos de "Matéria Corrompida" aparecem, e mobs normais começam a ser "transmutados" em versões mais agressivas ou mutantes (ex: Zumbis com braços de ferro, Esqueletos com ossos cristalizados).
+* **O Despertar dos Homúnculos Menores:** Os primeiros Homúnculos "falhos" ou "menores" (ex: Gula, Preguiça, Inveja) começam a aparecer como mini-chefes em masmorras ou biomas específicos. Derrotá-los rende "Fragmentos de Essência Pecaminosa", que são cruciais para aprimorar a Pedra Filosofal.
+* **Construção do Transmutador:** O jogador deve reunir os recursos para construir o Transmutador Alquímico de Redstone e aprender a criar a Pedra Filosofal, um item essencial para lidar com a corrupção e para o avanço da história.
+
+**Capítulo 4: A Procura pelos Pecados Capitais**
+* **Caça aos Homúnculos:** A história se aprofunda na busca pelos sete Homúnculos originais (Ira, Inveja, Gula, Luxúria, Preguiça, Ganância, Orgulho). Cada um é um chefe distinto, com seu próprio covil (Tumba do Homúnculo Adormecido, Fábrica Abandonada de Ferro, etc.) e mecânicas de combate complexas. Cada Homúnculo dropa um "Fragmento de Coração Pecaminoso" único.
+* **O Enigma do Coração:** Fragmentos de lore e diários antigos sugerem que o "Coração" do Red Wither Storm (a criatura suprema da corrupção) e os corações dos Homúnculos são a chave para o poder supremo e a verdade por trás da corrupção que assola o mundo.
+* **Conflitos de Facção:** O jogador pode se deparar com grupos sobreviventes com diferentes ideologias:
+    * **A Ordem dos Alquimistas Sábios:** Busca restaurar a ordem e purificar o mundo através da alquimia "pura".
+    * **A Liga dos Engenheiros da Fumaça:** Acredita que a tecnologia Steampunk é a única salvação e busca o poder da automação.
+    * **Os Cultistas do Pecado:** Um grupo secreto que busca o poder dos Homúnculos e a corrupção para seus próprios fins.
+    As escolhas do jogador em side-quests podem afetar a reputação com essas facções, desbloqueando diferentes rotas de side-quests, itens e até mesmo finais alternativos.
+
+**Capítulo 5: O Red Wither e o Ritual da Pedra Filosofal**
+* **Despertar do Red Wither:** Com a ascensão da corrupção e a derrota dos Homúnculos menores, o Red Wither, uma versão aprimorada e corrompida do Wither, é invocado ou desperta. Sua presença altera drasticamente o ambiente, espalhando mais Matéria Corrompida.
+* **O Bloco de Comando:** O jogador descobre que a única forma de obter um Bloco de Comando Limitado é através de um ritual complexo envolvendo a derrota do Red Wither após ele absorver todos os tipos de blocos de Redstone. Isso é crucial para o próximo passo da automação e para o confronto final.
+* **Aprimoramento da Pedra Filosofal:** A Pedra Filosofal (seja a sua versão ou uma mais poderosa) precisa ser aprimorada através de rituais em locais específicos (ex: Templo da Alquimia) usando os Fragmentos de Coração Pecaminoso dos Homúnculos. Esta Pedra Filosofal Aprimorada é essencial para lidar com o Red Wither Storm.
+
+**Capítulo 6: O Coração do Wither Storm e a Verdade Revelada**
+* **Ataque do Red Wither Storm:** A criatura colossal, o Red Wither Storm, finalmente se manifesta e começa a devastar o Overworld em larga escala, consumindo biomas inteiros.
+* **A Estratégia da Derrota:** O jogador deve usar todo o conhecimento adquirido (Redstone avançada, alquimia, tecnologia Steampunk) para criar uma armadilha ou um plano para expor e aprisionar o Coração do Wither Storm em um Frasco de Contenção Alquímica. Esta é uma batalha de inteligência e preparação, não apenas força bruta.
+* **A Revelação:** Ao aprisionar o Coração, o jogador recebe uma visão completa da lore: o "Pai" (o primeiro Homúnculo, o intelecto por trás de toda a corrupção) tentou recriar um mundo perfeito através da alquimia, mas falhou catastroficamente. Sua falha corrompeu a própria essência da realidade, criando os Homúnculos como extensões de seus "pecados" ou falhas, e ele se tornou o guardião distorcido do Portão da Verdade.
+
+**Capítulo 7: O Confronto Final: O Pai e o Destino do Mundo**
+* **Retorno ao Limbo da Verdade:** Com o Coração do Wither Storm (que serve como chave ou catalisador) e a Pedra Filosofal Aprimorada, o jogador pode agora reabrir e estabilizar o Portão da Verdade para retornar ao Limbo.
+* **O Legado do Portão:** Dentro do Limbo, o jogador descobre os segredos mais profundos da alquimia e da verdade sobre a existência. O Portão da Verdade não é apenas um portal, mas uma manifestação da lei universal da troca. Ele contém o conhecimento primordial, mas também a dor da falha do Pai.
+* **Batalha contra o Pai:** O confronto final contra o Pai, que manifesta todos os poderes dos Homúnculos e da alquimia corrompida. A luta é uma prova de todas as habilidades e conhecimentos que o jogador adquiriu.
+* **Múltiplos Finais (Influenciados pelas escolhas do jogador):**
+    * **Final da Restauração (Caminho da Ordem):** O jogador derrota o Pai e usa o Coração do Wither Storm e a Pedra Filosofal para "purificar" a corrupção no Overworld, restaurando biomas e equilibrando a magia e a tecnologia. O mundo é salvo, mas o poder da alquimia extrema é contido.
+    * **Final da Dominação (Caminho do Poder):** O jogador derrota o Pai e absorve seus poderes, tornando-se uma entidade poderosa, capaz de manipular a matéria e a energia em larga escala. O mundo é "controlado" pelo jogador, mas há o risco de uma nova corrupção se ele sucumbir ao poder. Desbloqueia habilidades alquímicas e tecnológicas superpoderosas.
+    * **Final do Sacrifício (Caminho da Contenção):** O jogador percebe que o poder do Pai e do Portão é muito perigoso. Ele decide selar o Portão da Verdade e o Pai para sempre, isolando a ameaça, mas perdendo o acesso a algumas das magias e tecnologias mais poderosas. O mundo é salvo, mas o progresso é limitado.
+
+#### B. Side Quests e Rotas Modificáveis
+
+* **Rotas de Facção (Aprofundado):**
+    * **A Ordem dos Alquimistas Sábios:**
+        * **Missões:** Purificar biomas corrompidos usando rituais de alquimia, criar antídotos contra os efeitos da corrupção, coletar artefatos alquímicos para restaurar o equilíbrio.
+        * **Recompensas:** Livros de feitiços de cura e buffs, receitas para poções de purificação, acesso a altares de alquimia exclusivos.
+    * **A Liga dos Engenheiros da Fumaça:**
+        * **Missões:** Construir e aprimorar máquinas steampunk complexas, explorar ruínas de fábricas para encontrar esquemas perdidos, automatizar grandes áreas para produção de recursos.
+        * **Recompensas:** Blueprints para máquinas avançadas, acesso a armas de fogo steampunk, componentes mecânicos raros, veículos a vapor.
+    * **Os Cultistas do Pecado:**
+        * **Missões:** Realizar rituais sombrios para invocar mobs corrompidos, coletar "Essência Aberrante" de criaturas mutantes, e sacrificar itens ou até mesmo mobs para obter magias proibidas.
+        * **Recompensas:** Feitiços de dano e maldição, acesso a mobs invocáveis poderosos, itens amaldiçoados com grande poder mas efeitos colaterais.
+
+* **Quests de Especialização:**
+    * **Mestre da Transmutação:** Quests focadas em descobrir todas as receitas de transmutação, criar novas, e aprimorar o Transmutador Alquímico para transmutar blocos mais complexos ou em maior quantidade.
+    * **Arquiteto de Redstone:** Quests para construir estruturas complexas de Redstone, usando o Computador Binário e o Cluster de Redstone para automação em larga escala, como cidades automatizadas ou defesas impenetráveis.
+    * **Caçador de Quimeras:** Missões para criar e domar diferentes tipos de quimeras (para uso próprio), ou para caçar as quimeras aberantes que escaparam dos experimentos falhos.
+
+* **Exploração de Dimensões Menores (Aprofundado):**
+    * **O Plano Elemental:** Pequenas dimensões acessíveis via portais temporários (criados com rituais). Cada plano é dominado por um elemento (fogo, água, terra, ar) e é rico em Essências Elementais, guardadas por Elementais de Essência.
+    * **O Reino das Máquinas Despertas:** Uma dimensão onde a tecnologia Steampunk avançou de forma independente. Contém cidades voadoras, fábricas ativas e grandes máquinas, mas é dominada por autômatos rebeldes e chefes mecânicos.
+
+* **Desafios de Sobrevivência e Eventos Mundiais:**
+    * **Enxames Corrompidos:** Eventos aleatórios onde grandes hordas de mobs corrompidos surgem em áreas afetadas, exigindo que o jogador defenda um local ou limpe a área dentro de um tempo limite.
+    * **Tempestades de Vapor:** Eventos climáticos em biomas steampunk que podem danificar máquinas e jogadores, mas também revelam recursos únicos (ex: condensados de vapor).
+    * **Anomalias Gravitacionais:** Áreas aleatórias onde a gravidade é temporariamente alterada, causando flutuação ou esmagamento.
+
+### VI. O Portão da Verdade (Regras Específicas e Lore Central)
+
+* **Dimensão Própria: "O Limbo da Verdade"**: O Portão da Verdade reside em uma dimensão separada, um plano etéreo de existência que é a manifestação da "Verdade Universal" e das leis da troca. É um local de conhecimento primordial e de dor cósmica.
+    * **Aparência:** Paisagens fragmentadas, ilhas flutuantes de pedra polida e cristal, com uma névoa etérea e um céu que pulsa com cores desconhecidas. Ruínas de uma civilização antiga (talvez a do Pai) estão espalhadas, com escrituras e símbolos incompreensíveis.
+    * **Início do Jogo:** O jogador **sempre começa o mundo** nesta dimensão. É um prólogo, um tutorial suave onde o jogador aprende os controles básicos e os primeiros princípios da alquimia e da Redstone através de quebra-cabeças ambientais. A atmosfera é de mistério e uma sensação de que algo está fundamentalmente errado.
+    * **Primeira Transição:** Após uma breve exploração e interação inicial com o Portão (que o "rejeita" ou o "expele" devido à sua "impureza" ou falta de compreensão), o jogador é forçado a uma transição violenta para o Overworld. Esta experiência é traumática, e o jogador perde a maioria das suas memórias do Limbo e do Portão, restando apenas um vago sentimento de propósito e a sensação de que algo foi "perdido".
+* **Retorno Controlado (Endgame):** Para retornar ao Limbo e ao Portão em fases posteriores do jogo, o jogador deve:
+    * Possuir o **Coração do Wither Storm aprisionado em um Frasco de Contenção Alquímica**. Este item é a chave que ressoa com a energia do Portão.
+    * Ter a **Pedra Filosofal Aprimorada**. Ela serve como um amplificador e estabilizador para o ritual de abertura.
+    * Realizar um **Ritual de Abertura do Portão** em um local específico do Overworld (ex: uma "Marca da Verdade" que aparece aleatoriamente no mundo ou é revelada por uma quest). O ritual é complexo, exigindo um círculo de transmutação específico, sacrifícios e canalização.
+* **Função do Portão:**
+    * **Conhecimento Primordial:** O Portão da Verdade é uma manifestação da lei universal. Interagir com ele (na fase final, após derrotar o Pai) pode conceder ao jogador habilidades passivas ou conhecimentos alquímicos e tecnológicos únicos, mas sempre em troca de algo (ex: um pouco da vida máxima permanentemente reduzida, um efeito de "peso" permanente que afeta a velocidade, ou a perda de um item querido).
+    * **Punição da Troca Equivalente:** Tentativas de "trapacear" o Portão (ex: usar itens duplicados, tentar passar por ele sem os requisitos, ou tentar invocar algo sem o custo adequado) resultarão em efeitos negativos severos, como dano massivo, cegueira permanente, teletransporte para uma área hostil, ou até mesmo a "corrupção" de itens do inventário.
+    * **O Guardião Final:** O Pai é o guardião final do Portão. Sua derrota é o passo essencial para controlar (ou purificar) o Portão e decidir o destino do mundo. Ele está intrinsecamente ligado ao Portão, sendo tanto seu protetor quanto sua maior falha.
+
+
+
+⚙️ MECÂNICAS AVANÇADAS (Nível Técnico Alto)
+Conversor de Sinais Universais
+
+Converte sinais de Redstone, vapor, magia ou até som em um "sinal universal" que pode ativar qualquer tipo de máquina, permitindo integração entre sistemas.
+
+GUI para configurar o que entra e o que sai.
+
+Impressor de Códigos Rúnicos
+
+Máquina que grava runas em blocos, armas ou circuitos. Permite customizar efeitos, encantamentos ou ativações automáticas.
+
+Funciona como uma "mesa de programação mística".
+
+Condensador de Fluxo Energético
+
+Armazena múltiplas fontes de energia (Redstone, vapor, essência) em um núcleo que pode ser redistribuído via fio ou wireless.
+
+Serve como banco de energia, essencial em grandes bases.
+
+Fusão de Circuitos (Matriz de Compactação)
+
+Junta múltiplos componentes de Redstone em um bloco único. Tipo um "Cluster", mas com lógica visual.
+
+Permite circuitos ultra compactos com interface drag’n’drop.
+
+Servidor Alquímico
+
+Uma máquina que executa "receitas" automaticamente com base em ordens recebidas por sinais.
+
+Ideal para farms de poções, rituais ou criação de itens mágicos.
+
+🧠 AUTOMAÇÃO INTELIGENTE
+Scanner de Área Modular
+
+Detecta blocos, mobs, temperatura, umidade, gravidade ou corrupção em uma área.
+
+Envia dados em forma de sinais que outras máquinas podem interpretar.
+
+Executor de Rotina (Macro Executor)
+
+Permite programar sequências de ações (colher, replantar, regar, atacar) com delay, condição e repetição.
+
+Usa "cartões de rotina" como consumíveis.
+
+Sonda Subterrânea
+
+Um robô que cava túneis automaticamente e envia mapa de calor dos minérios encontrados.
+
+Alimentado por vapor ou células voltaicas.
+
+Golem Engenheiro
+
+Companheiro que conserta máquinas quebradas, realinha engrenagens e pode até construir estruturas básicas se tiver blueprint.
+
+Gerador de Ilusões Holográficas
+
+Cria “mobs falsos” ou imagens de blocos para enganar mobs ou proteger áreas.
+
+Usa energia arcana ou Redstone, e tem limites de tempo/área.
+
+🚂 MECÂNICAS DE TRANSPORTE
+Trilhos Pneumáticos
+
+Nova linha de trilhos que dispara carrinhos a altíssima velocidade com ar comprimido.
+
+Ideal para túneis longos e bases industriais.
+
+Portal de Carga Logística
+
+Bloco multibloquinho que teleporta itens de um ponto a outro da base.
+
+Precisa ser calibrado com coordenadas e consumíveis de estabilidade mágica.
+
+Drone de Transporte
+
+Pequeno autômato voador que carrega até 9 slots de itens e os leva entre dois baús/máquinas.
+
+Voa automaticamente se tiver rota registrada.
+
+Túnel Móvel (Escavador de Fronteira)
+
+Bloco frontal que cava um túnel automaticamente e empurra uma estrutura junto (como um trem/esteira).
+
+Serve para bases móveis subterrâneas.
+
+🔫 DEFESA & ATAQUE TECNOLÓGICO
+Torres de Tesla Móveis
+
+Torretas que andam lentamente e disparam raios em mobs inimigos. Podem ser programadas por tipo de mob.
+
+Barreira de Campo Estático
+
+Cria um campo elétrico semicircular que impede flechas, mobs e jogadores por tempo limitado.
+
+Custa energia crescente por segundo ativo.
+
+Sentinela de Análise
+
+Uma câmera voadora que patrulha uma área. Ao detectar intrusos, envia sinal para alarmes ou torretas.
+
+Pode identificar itens no inventário de um jogador.
+
+Detector de Intenção Hostil
+
+Baseado em variação de NBTs. Detecta quando um mob está com IA agressiva ou quando um jogador mira com arco/espada.
+
+🧩 TECNOLOGIA HÍBRIDA (MAGIA + CIÊNCIA)
+Refinador de Essência
+
+Purifica Essência de Alquimia bruta em formas especializadas: Essência de Fogo, Vida, Sombra, Metal etc.
+
+Necessário pra feitiços complexos.
+
+Bateria Rúnica
+
+Armazena Mana em formato sólido. Serve para alimentar máquinas mágicas ou feitiços autônomos.
+
+Pode explodir se sobrecarregada.
+
+Catalisador Temporal
+
+Acelera o tempo de crescimento de plantas, fundição, transmutação ou crafts em um raio.
+
+Causa instabilidade se usado por muito tempo.
+
+Prisma de Redirecionamento
+
+Um bloco óptico que reflete feitiços mágicos, raios de energia, sinais visuais ou Redstone óptica.
+
+Scanner de DNA Alquímico
+
+Permite extrair “essência genética” de mobs. Usado para clonar, fundir ou criar mutações.
+
+🏗️ MECÂNICAS DE CONSTRUÇÃO
+Projetor de Blueprint
+
+Projeta uma estrutura “fantasma” que o jogador pode seguir para construir.
+
+Pode ser alimentado por um disco com blueprint importado.
+
+Compilador de Estrutura Modular
+
+Lê padrões de blocos próximos e “grava” como uma estrutura reutilizável.
+
+Pode ser usado para replicar construções via sinal Redstone ou vapor.
+
+mods de compatibilidade:
+⚙️ MECÂNICAS AVANÇADAS (Nível Técnico Alto)
+Conversor de Sinais Universais
+
+Converte sinais de Redstone, vapor, magia ou até som em um "sinal universal" que pode ativar qualquer tipo de máquina, permitindo integração entre sistemas.
+
+GUI para configurar o que entra e o que sai.
+
+Impressor de Códigos Rúnicos
+
+Máquina que grava runas em blocos, armas ou circuitos. Permite customizar efeitos, encantamentos ou ativações automáticas.
+
+Funciona como uma "mesa de programação mística".
+
+Condensador de Fluxo Energético
+
+Armazena múltiplas fontes de energia (Redstone, vapor, essência) em um núcleo que pode ser redistribuído via fio ou wireless.
+
+Serve como banco de energia, essencial em grandes bases.
+
+Fusão de Circuitos (Matriz de Compactação)
+
+Junta múltiplos componentes de Redstone em um bloco único. Tipo um "Cluster", mas com lógica visual.
+
+Permite circuitos ultra compactos com interface drag’n’drop.
+
+Servidor Alquímico
+
+Uma máquina que executa "receitas" automaticamente com base em ordens recebidas por sinais.
+
+Ideal para farms de poções, rituais ou criação de itens mágicos.
+
+🧠 AUTOMAÇÃO INTELIGENTE
+Scanner de Área Modular
+
+Detecta blocos, mobs, temperatura, umidade, gravidade ou corrupção em uma área.
+
+Envia dados em forma de sinais que outras máquinas podem interpretar.
+
+Executor de Rotina (Macro Executor)
+
+Permite programar sequências de ações (colher, replantar, regar, atacar) com delay, condição e repetição.
+
+Usa "cartões de rotina" como consumíveis.
+
+Sonda Subterrânea
+
+Um robô que cava túneis automaticamente e envia mapa de calor dos minérios encontrados.
+
+Alimentado por vapor ou células voltaicas.
+
+Golem Engenheiro
+
+Companheiro que conserta máquinas quebradas, realinha engrenagens e pode até construir estruturas básicas se tiver blueprint.
+
+Gerador de Ilusões Holográficas
+
+Cria “mobs falsos” ou imagens de blocos para enganar mobs ou proteger áreas.
+
+Usa energia arcana ou Redstone, e tem limites de tempo/área.
+
+🚂 MECÂNICAS DE TRANSPORTE
+Trilhos Pneumáticos
+
+Nova linha de trilhos que dispara carrinhos a altíssima velocidade com ar comprimido.
+
+Ideal para túneis longos e bases industriais.
+
+Portal de Carga Logística
+
+Bloco multibloquinho que teleporta itens de um ponto a outro da base.
+
+Precisa ser calibrado com coordenadas e consumíveis de estabilidade mágica.
+
+Drone de Transporte
+
+Pequeno autômato voador que carrega até 9 slots de itens e os leva entre dois baús/máquinas.
+
+Voa automaticamente se tiver rota registrada.
+
+Túnel Móvel (Escavador de Fronteira)
+
+Bloco frontal que cava um túnel automaticamente e empurra uma estrutura junto (como um trem/esteira).
+
+Serve para bases móveis subterrâneas.
+
+🔫 DEFESA & ATAQUE TECNOLÓGICO
+Torres de Tesla Móveis
+
+Torretas que andam lentamente e disparam raios em mobs inimigos. Podem ser programadas por tipo de mob.
+
+Barreira de Campo Estático
+
+Cria um campo elétrico semicircular que impede flechas, mobs e jogadores por tempo limitado.
+
+Custa energia crescente por segundo ativo.
+
+Sentinela de Análise
+
+Uma câmera voadora que patrulha uma área. Ao detectar intrusos, envia sinal para alarmes ou torretas.
+
+Pode identificar itens no inventário de um jogador.
+
+Detector de Intenção Hostil
+
+Baseado em variação de NBTs. Detecta quando um mob está com IA agressiva ou quando um jogador mira com arco/espada.
+
+🧩 TECNOLOGIA HÍBRIDA (MAGIA + CIÊNCIA)
+Refinador de Essência
+
+Purifica Essência de Alquimia bruta em formas especializadas: Essência de Fogo, Vida, Sombra, Metal etc.
+
+Necessário pra feitiços complexos.
+
+Bateria Rúnica
+
+Armazena Mana em formato sólido. Serve para alimentar máquinas mágicas ou feitiços autônomos.
+
+Pode explodir se sobrecarregada.
+
+Catalisador Temporal
+
+Acelera o tempo de crescimento de plantas, fundição, transmutação ou crafts em um raio.
+
+Causa instabilidade se usado por muito tempo.
+
+Prisma de Redirecionamento
+
+Um bloco óptico que reflete feitiços mágicos, raios de energia, sinais visuais ou Redstone óptica.
+
+Scanner de DNA Alquímico
+
+Permite extrair “essência genética” de mobs. Usado para clonar, fundir ou criar mutações.
+
+🏗️ MECÂNICAS DE CONSTRUÇÃO
+Projetor de Blueprint
+
+Projeta uma estrutura “fantasma” que o jogador pode seguir para construir.
+
+Pode ser alimentado por um disco com blueprint importado.
+
+Compilador de Estrutura Modular
+
+Lê padrões de blocos próximos e “grava” como uma estrutura reutilizável.
+
+Pode ser usado para replicar construções via sinal Redstone ou vapor.
+
+Quer que eu agrupe essas ideias por progressão de jogo (early/mid/endgame)? Ou quer mais ideias focadas só em defesa, automação agrícola ou sistemas de energia? Posso até bolar receitas e crafting também. É só pedir.
+
+
+
+
+
+
+
+
+You said:
+recomende 40 mods para usar no modpack desse mod, mods que podem ajudar
+
+⚙️ Tecnologia e Automação (Estilo Steampunk / Redstone avançada)
+Create – Base essencial para máquinas mecânicas realistas, engrenagens, e sistemas de movimentação complexos. Estilo steampunk puro.
+
+Immersive Engineering – Estética industrial detalhada, com energia baseada em máquinas a óleo e bobinas de Tesla.
+
+Thermal Series (Foundation + Expansion) – Máquinas modulares, dutos, fluidos, e automação energética leve.
+
+Redstone Gauges and Switches – Relógios, manômetros, indicadores visuais de energia e sinais. Muito útil para ambientes industriais.
+
+Super Circuit Maker – Redstone miniaturizada. Ótimo para circuitos complexos em espaços reduzidos.
+
+XNet – Transporte inteligente de itens, energia, sinais e fluidos entre máquinas, com controle via GUI.
+
+Botania – Magia baseada em flores e energia mágica natural. Lógica própria que casa com alquimia e automação.
+
+Integrated Dynamics – Um sistema de lógica avançada com automação e leitura de valores. Ótimo para interações com NBTs e status de entidades.
+
+ProjectRed – Redstone evoluído, com fios coloridos, chips lógicos e timers de precisão.
+
+Refined Storage – Armazenamento e automação digital. Combina bem com o "Cluster de Redstone".
+
+🔮 Magia, Alquimia e Fantasia Estrutural
+Ars Nouveau – Magia de feitiços customizáveis com livro mágico. Pode ser usado como base para feitiços do seu sistema de cristais rúnicos.
+
+Occultism – Invocação de espíritos, crafting dimensional, e rituais complexos. Combina com a parte sombria do mod.
+
+Blood Magic – Magia baseada em sacrifício. Ideal para rituais corrompidos e transmutações proibidas.
+
+Forbidden & Arcanus – Magia antiga com artefatos amaldiçoados. Excelente para ampliar a lore de alquimia proibida.
+
+Elemental Craft – Manipulação direta de elementos (água, fogo, terra, ar). Serve para dar base aos Elementais e Círculos Rúnicos.
+
+Mahou Tsukai – Magia crua baseada em mana e habilidades especiais, como teleporte, ilusões e manipulação de energia.
+
+Reliquary Reincarnations – Artefatos mágicos com habilidades únicas. Complementa bem o sistema de alquimia e drops de chefes.
+
+Mystical Agriculture – Cultivo de recursos mágicos. Ideal para manter a progressão de recursos alquímicos.
+
+Mana and Artifice – Um sistema mágico complexo, com rituais, círculos mágicos e progressão detalhada.
+
+Bewitchment – Feitiçaria tradicional e bruxaria. Ótimo para complementar a parte mais “espiritual” do mod.
+
+🛠️ Utilidade, Estrutura e Qualidade de Vida
+Quark – Adições simples, bem integradas e úteis ao vanilla (armários, blocos decorativos, mecânicas pequenas).
+
+Supplementaries – Blocos utilitários (canos, sinos, lanternas, placas com física, armadilhas). Estilo retrô e steampunk-friendly.
+
+Chisels & Bits – Esculpir blocos. Útil para criar decorações steampunk e círculos alquímicos manuais.
+
+Tetra – Sistema de personalização de ferramentas e armas. Alinha perfeitamente com o “Medidor de Atributos”.
+
+Little Logistics – Transporte automatizado com barquinhos, caminhões e trilhos. Estilo imersivo e funcional.
+
+Framez – Construção modular de máquinas móveis. Ideal para quem quer criar esteiras, elevadores ou guindastes.
+
+Scannable – Scanner portátil que detecta minérios, estruturas ou mobs. Ideal pra jogabilidade tecnológica.
+
+Waystones – Sistema de teleporte imersivo e configurável. Perfeito para conectar biomas mágicos e vilas flutuantes.
+
+MineColonies – Cidades NPCs que evoluem. Pode ser usado com as Cidades Steampunk ou Subterrâneas da lore.
+
+Dimensional Doors – Exploração de dimensões paralelas. Ótimo pra representar o "Limbo da Verdade" ou realidades corrompidas.
+
+🧟‍♂️ Aventura, Bosses e Exploração
+Ice and Fire: Dragons – Dragões com IA inteligente. Pode ser fundido na lore como criaturas mágicas ou fontes de Essência.
+
+Mowzie’s Mobs – Mobs com animações e padrões únicos. Perfeito para bosses tipo Homúnculos.
+
+The Abyss: Chapter II – Dimensão sombria e corrompida, com foco em desafios mágicos e bosses. Complementa muito bem sua estética.
+
+Alex’s Mobs – Mais de 70 mobs únicos com mecânicas próprias. Excelente pra enriquecer biomas mágicos e experimentos alquímicos.
+
+End Remastered – Expansão do End com vários olhos, templos e progressão. Dá profundidade pro endgame e Red Wither Storm.
+
+When Dungeons Arise – Gera estruturas gigantes com masmorras. Ideal pra esconder tumbas e locais de rituais.
+
+Dungeon Crawl – Gera masmorras estilo Diablo, boas pra conter Fragmentos ou peças do Coração Corrompido.
+
+Towers of the Wild – Torres geradas naturalmente. Podem servir como pontos de encontro mágicos ou torres de alquimistas.
+
+Falling Tree – Qualidade de vida na mineração de madeira. Ótimo pro início de jogo e automação.
+
+Dynamic Surroundings – Ambientes com som, clima e iluminação dinâmicos. Deixa os biomas mágicos mais vivos e assustadores.
+
+Epic Fight - Combate epico no estilo soulslike
+
+Crie um mod COMPLETO e FUNCIONAL para Minecraft com o tema "Ciência & Magia". O mod deve ser desenvolvido para **Minecraft 1.20.1 com Forge**, com foco em interações e complementos para um modpack grande e coeso.
+
+**Objetivo Geral do Mod:** Transformar a experiência de Minecraft, introduzindo uma tapeçaria intrincada de elementos científicos avançados (focados em Redstone e automação Steampunk) e sistemas mágicos profundos (alquimia, feitiçaria e rituais). Permitir que os jogadores escolham seu caminho – mestre alquimista, engenheiro mecânico, ou um híbrido – e moldem o destino de um mundo à beira da corrupção.
+
+**Linguagens de Implementação Obrigatórias:**
+*   **Java (Forge):** Para a lógica central do mod, blocos com comportamentos complexos e interação de entidades, sistemas de GUIs, e toda a programação de alto nível.
+*   **JSON (Datapacks/Assets):** Para a definição de todos os ativos do jogo (modelos de blocos/itens, blockstates, texturas, receitas de crafting/fundição, tabelas de saque, avanços, tags, e configurações de biomas/geração de estruturas).
+*   **KubeJS (JavaScript):** Para scripts de receitas dinâmicas, manipulação de eventos de jogo (colocar/quebrar blocos, interagir com entidades), e para criar uma camada de integração flexível com outros mods do modpack.
+*   **MCFunction (Datapacks):** Para sequências de comandos complexas que implementem rituais, eventos de história, e lógicas de jogo que se beneficiem do sistema de comandos do Minecraft (ex: ativação de chefes, manipulação de áreas do mundo).
+*   **Outras Linguagens Essenciais (se aplicável):** Se alguma mecânica específica do mod sugerir o uso de outra linguagem de scripting (como Lua para um computador in-game), implemente o framework necessário para suportá-la e o código de exemplo.
+
+**Requisitos de Implementação Geral:**
+1.  **Código Completo, Sem Placeholders:** Cada linha de código gerada deve ser funcional e semanticamente correta. Não devem existir comentários como `// TODO: Implementar lógica aqui` ou referências a ativos ausentes.
+2.  **Modelos e Texturas:**
+    *   Para cada bloco ou item novo, gere os arquivos JSON de `blockstates`, `models/block`, e `models/item`.
+    *   Assuma um modelo de cubo padrão (`minecraft:block/cube_all`) para blocos, a menos que uma descrição detalhada de um modelo 3D complexo seja fornecida.
+    *   Para texturas, referencie nomes lógicos e consistentes no formato `modid:block/nome_da_textura` ou `modid:item/nome_da_textura`. Não gere o conteúdo das imagens das texturas, apenas os caminhos.
+3.  **Localização (Internacionalização):** Inclua arquivos `en_us.json` e `pt_br.json` em `src/main/resources/assets/modid/lang/` para todos os nomes de blocos, itens, entidades, efeitos de status, e strings de GUI.
+4.  **Balanceamento Inicial:** Ofereça um balanceamento inicial razoável para custos de crafting, dano, durabilidade, etc., que seja consistente com a progressão do mod.
+
+**Componentes Detalhados do Mod (Baseados no Conceito "Ciência & Magia" e `1.txt`):**
+
+---
+
+**I. Estrutura Base do Mod:**
+*   **MODID:** `modcienciamagia`
+*   **Classe Principal Java:** `com.modcienciamagia.mod.ModCienciaMagia` (já iniciada).
+*   **Configuração `build.gradle`:** Completar com todas as dependências necessárias para Forge 1.20.1 e KubeJS.
+*   **`mods.toml`:** Completar com todas as informações do mod e suas dependências.
+
+---
+
+**II. Novas Mecânicas de Redstone & Computação (Blocos Java, JSON para Assets/Receitas):**
+1.  **Distribuidor de Redstone:** (Classe Java `RedstoneDistributorBlock` e JSONs já criados. Aprimorar a lógica de distribuição.)
+    *   **Comportamento:** Implementar a lógica de divisão proporcional de sinal Redstone para múltiplas saídas, considerando intensidade de entrada e número de saídas ativas.
+    *   **Modos de Operação:** Implementar "Modo Divisor", "Modo Replicador", "Modo Filtro". Se uma GUI for necessária, crie a estrutura básica para ela (Java).
+2.  **Sinalizador de Redstone:**
+    *   **Comportamento:** Estender e amplificar sinal Redstone. Implementar fator de amplificação ajustável.
+    *   **Custos:** Incorporar custo (Redstone consumível, requisito de energia de vapor, ou tempo de recarga) para amplificação.
+    *   **Modos:** Implementar modos para amplificar sinal contínuo ou pulsos curtos.
+    *   **Crafting:** Definir receita (JSON) usando Bloco de Redstone, Lâmpada de Redstone e "Cristal Resonante" (novo item).
+3.  **Medidor (Peso) de Redstone:**
+    *   **Comportamento:** Detectar massa/peso de entidades/blocos em área de efeito e converter em sinal Redstone proporcional.
+    *   **Escala de Peso:** Implementar sistema de "peso" predefinido para itens, blocos e mobs.
+    *   **Calibração:** Se GUI, criar estrutura para ajustar sensibilidade/limiar.
+    *   **Crafting:** Definir receita (JSON) usando Ferro, Redstone, Placa de Pressão (pesada) e "Mecanismo de Balança" (novo item).
+4.  **Medidor (Face) de Redstone:**
+    *   **Comportamento:** Analisar textura e relevo de bloco adjacente e gerar sinal Redstone.
+    *   **Valores de Textura:** Implementar lógica para diferentes intensidades de sinal com base na textura (metais, madeira, pedra, obsidiana/corrompidos).
+    *   **Crafting:** Definir receita (JSON) usando Redstone, Vidro, "Sensor de Luz" (novo tipo de sensor) e "Microscópio de Redstone" (novo item).
+5.  **Medidor de Atributos:**
+    *   **Comportamento:** Permitir recalibração dos atributos de itens/equipamentos usando um "pool de pontos" fixo. Implementar GUI para redistribuição de pontos.
+    *   **Atributos:** Gerenciar Ataque, Velocidade de Ataque, Durabilidade, Eficiência de Mineração, Proteção.
+    *   **Custo:** Incorporar custo em XP, Redstone ou "Essência de Atributo" (novo item). Implementar limitações.
+    *   **Crafting:** Definir receita (JSON) usando Bloco de Ferro, Redstone, Diamante e "Cristal de Calibração" (novo item).
+6.  **Medidor de NBT/Propriedades do Bloco:**
+    *   **Comportamento:** Monitorar área e registrar NBT data detalhada sobre blocos, entidades e interações. Armazenar dados em um livro inserível.
+    *   **Informações Registradas:** Tipos de mobs/jogadores (nome, coords, interação); tipos de blocos (quem colocou/quebrou); eventos (item no chão, baú aberto, spawn).
+    *   **Reset:** Lógica para resetar dados ao quebrar/coletar o bloco.
+    *   **Crafting:** Definir receita (JSON) usando Obsidiana, Redstone, Olho de Ender e "Mecanismo de Registro" (novo item).
+7.  **Transmutador Alquímico de Redstone:**
+    *   **Comportamento:** Transformar matéria em outra. Exigir "Pedra Filosofal" (novo item) para ativação. Implementar "Lei da Troca Equivalente" com "medidor de equivalência" na GUI.
+    *   **Receitas:** Implementar receitas de transmutação (ex: Bambu->Madeira, Minério de Cobre->Barra de Cobre).
+    *   **Crafting:** Definir receita (JSON) usando Bloco de Ferro, Bloco de Redstone, Obsidiana e "Círculo de Transmutação Gravado" (novo item).
+8.  **Amplificador Gravitacional:**
+    *   **Comportamento:** Manipular força gravitacional em área esférica. Intensidade e alcance ajustáveis via sinal Redstone.
+    *   **Efeitos:** Implementar "Gravidade Aumentada" (lentidão, dano de queda) e "Gravidade Reduzida/Invertida" (saltos altos, flutuação).
+    *   **Crafting:** Definir receita (JSON) usando Bloco de Ferro, Redstone, Olho de Ender e "Núcleo de Campo Magnético" (novo item).
+9.  **Computador Binário:**
+    *   **Comportamento:** Computador mecânico programável. "Aprender" padrões de sinais de entrada/saída.
+    *   **Interface (GUI):** Criar uma GUI complexa com sistema de "nós" e "conexões" visuais para "algoritmos" simples.
+    *   **Aplicações:** Exemplificar automação dinâmica (irrigação inteligente), gerenciamento de energia.
+    *   **Crafting:** Definir receita (JSON) usando Bloco de Ferro, Lapis Lazuli, Redstone e "Processador Mecânico" (novo item).
+10. **Cluster de Redstone:**
+    *   **Comportamento:** Replicar funções de múltiplos blocos de Redstone (repetidores, comparadores, observadores, tochas, pistões) com inventário interno.
+    *   **Ativação:** Implementar GUI para "ativar" funções dos blocos armazenados.
+    *   **Limitações:** Definir limite de blocos e custo de energia.
+    *   **Crafting:** Definir receita (JSON) usando Bloco de Redstone, Quartzo do Nether e "Receptáculo de Energia" (novo item).
+11. **Bobina de Tesla:**
+    *   **Comportamento:** Gerar pulsos de alta voltagem ou campos eletromagnéticos.
+    *   **Funções:** Dano elétrico a mobs (atordoar), barreira elétrica temporária, transmissão de energia sem fio (se um sistema de energia mais complexo for implementado).
+    *   **Consumo:** Implementar consumo de Redstone ou "Célula Voltaica" (novo item).
+    *   **Riscos:** Dano ao jogador se aproximar.
+    *   **Crafting:** Definir receita (JSON) usando Bloco de Cobre, Lapis Lazuli, Redstone e "Condensador de Energia" (novo item).
+12. **Minerador de Redstone:**
+    *   **Comportamento:** Bloco automatizado que mina e coleta minério de Redstone em seu alcance. Armazenar drops.
+    *   **Upgrades:** Implementar slots para "Brocas de Eficiência", "Extensores de Alcance" e "Filtros de Minério" (novos itens/componentes).
+    *   **Crafting:** Definir receita (JSON) usando Bloco de Ferro, Picareta de Ferro (consumida), Redstone e "Mecanismo de Perfuração" (novo item).
+13. **Estruturas Steampunk:**
+    *   **Blocos:** Gerar JSONs para `blockstates` e `models/block` para: "Metais Envelhecidos" (ferro, cobre, bronze com detalhes visuais de rebites/tubulações), "Madeira Polida", "Vidro Temperado", "Engrenagens Decorativas" (com animação visual de giro via `blockstates` se possível, ou simples modelos estáticos), "Tubulações Visíveis".
+    *   **Itens Decorativos:** Gerar JSONs para `models/item` para: Relógios de parede, barômetros, telégrafos, lâmpadas a gás, painéis de controle.
+
+---
+
+**III. Novos Itens Mágicos (Classes Java, JSON para Assets/Receitas):**
+1.  **Pedra Filosofal:** (Item essencial, durabilidade limitada).
+    *   **Crafting:** Definir receita (JSON) usando Estrela do Wither e Redstone (conforme `1.txt`).
+2.  **Cristal Resonante:** (Item para Sinalizador de Redstone)
+    *   **Crafting:** Definir receita (JSON).
+3.  **Mecanismo de Balança:** (Item para Medidor de Peso)
+    *   **Crafting:** Definir receita (JSON).
+4.  **Microscópio de Redstone:** (Item para Medidor de Face)
+    *   **Crafting:** Definir receita (JSON).
+5.  **Essência de Atributo:** (Item para Medidor de Atributos)
+    *   **Obtenção:** Definir como drop de mobs específicos ou via rituais.
+6.  **Cristal de Calibração:** (Item para Medidor de Atributos)
+    *   **Crafting:** Definir receita (JSON).
+7.  **Mecanismo de Registro:** (Item para Medidor de NBT)
+    *   **Crafting:** Definir receita (JSON).
+8.  **Círculo de Transmutação Gravado:** (Item para Transmutador Alquímico)
+    *   **Crafting:** Definir receita (JSON).
+9.  **Núcleo de Campo Magnético:** (Item para Amplificador Gravitacional)
+    *   **Crafting:** Definir receita (JSON).
+10. **Processador Mecânico:** (Item para Computador Binário)
+    *   **Crafting:** Definir receita (JSON).
+11. **Receptáculo de Energia:** (Item para Cluster de Redstone)
+    *   **Crafting:** Definir receita (JSON).
+12. **Célula Voltaica:** (Item para Bobina de Tesla)
+    *   **Crafting:** Definir receita (JSON) para gerar eletricidade.
+13. **Condensador de Energia:** (Item para Bobina de Tesla)
+    *   **Crafting:** Definir receita (JSON).
+14. **Mecanismo de Perfuração:** (Item para Minerador de Redstone)
+    *   **Crafting:** Definir receita (JSON).
+15. **Cristais Rúnicos (Gelo, Cura, Fogo, Teleporte):** (Novos Itens)
+    *   **Comportamento:** Implementar habilidades de feitiço quando usados com "Varinha Mágica".
+    *   **Crafting/Obtenção:** Definir receitas (JSON) ou drops/locais de encontro.
+16. **Fragmento do Coração Corrompido:** (Item essencial de Boss)
+    *   **Obtenção:** Drop do Red Wither e outros Homúnculos.
+17. **Lágrima de Ghast Purificada:** (Item para Elixir da Imortalidade)
+    *   **Obtenção:** Definir processo de purificação de Lágrima de Ghast (pode ser via Altar de Alquimia ou ritual).
+18. **Orbe de Estabilidade Temporal:** (Item para Elixir da Imortalidade)
+    *   **Obtenção:** Definir forma de obtenção (raro drop, ou mini-boss).
+19. **Frasco de Contenção Alquímica:** (Item para Coração do Wither Storm)
+    *   **Crafting:** Definir receita (JSON).
+20. **Núcleo de Essência Vital:** (Item para Criadouro de Homúnculos)
+    *   **Obtenção:** Definir forma de obtenção (pode ser via mobs específicos ou rituais).
+
+---
+
+**IV. Novas Entidades (Classes Java, JSON para Modelos/Animações/Loot):**
+1.  **Red Wither:** (Classe Java para Entidade Boss)
+    *   **Invocação:** Implementar lógica de invocação (semelhante ao Wither, mas com "Bloco de Redstone Corrompido" e "Crânios de Wither Transmutados").
+    *   **Poderes:**
+        *   **Transmutação Contínua:** Mudar blocos próximos para "Matéria Corrompida" (novo bloco) aleatoriamente.
+        *   **Ataques de Corrupção:** Lançar projéteis que causam dano e aplicam efeito "Corrupção" (drena vida, impede cura).
+        *   **Invocar Lacaios Corrompidos:** Invocar "Red Witherlings" (nova entidade, menor).
+    *   **Drops:** "Fragmentos do Coração Corrompido", "Essência de Transmutação", "Crânio de Wither Transmutado".
+2.  **Red Witherlings:** (Classe Java para Entidade Mob)
+    *   **Comportamento:** Lacaios do Red Wither.
+3.  **Red Wither Storm:** (Classe Java para Entidade Boss Final, com lógica de Datapack/KubeJS para eventos mundiais)
+    *   **Invencibilidade:** Implementar imunidade a dano convencional.
+    *   **Fraqueza Única:** Lógica para expor e aprisionar o "Coração Pulsante" em "Frasco de Contenção Alquímica" através de estratégia complexa.
+    *   **Comportamento:** Mover-se lentamente pelo Overworld, transformando biomas em "Terras Corrompidas", gerando hordas de mobs mutantes.
+    *   **Habilidades:** Absorção de Matéria, Tempestade de Corrupção (efeito de partículas, dano/debuffs), Invocações Massivas (mobs corrompidos, mini-Withers).
+    *   **Coração do Wither Storm:** Implementar o item e suas propriedades de endgame.
+4.  **Homúnculos (Chefes de Elite - Ira, Inveja, Gula, Luxúria, Preguiça, Ganância, Orgulho):**
+    *   Para cada um, criar uma Classe Java `EntityHomunculo[Nome]` (ex: `EntityWrath`).
+    *   **Inteligência Artificial:** Implementar padrões de ataque e habilidades complexas (todos os 10 ataques detalhados no `1.txt` para cada um).
+    *   **Localização/Invocação:** Definir como encontrados ou invocados (via Datapacks/KubeJS para rituais).
+    *   **Drops:** "Fragmento do Coração Pecaminoso" único e "Essência Pecaminosa" (nova).
+5.  **Pai:** (Chefe Final - Classe Java para Entidade Boss, mais complexa)
+    *   **Comportamento:** Entidade primordial, forma mutável, invoca/combina ataques dos outros Homúnculos. Guardião do Portão da Verdade.
+    *   **Ataques Adaptativos:** Implementar todos os 10 ataques descritos no `1.txt`, com transições de fase.
+    *   **Estratégia de Combate:** Lógica para ambientes mutáveis (plataformas), identificação de "imitacão" de Homúnculos.
+6.  **Mini-Homúnculos (Mini-Withers, Mini-Gula, Mini-Ira, Mini-Preguiça, Mini-Inveja):** (Classes Java para Entidades Mob)
+    *   **Comportamento:** Lacaios menores com funções variadas (coletar, causar dano extra, escudo, distrair).
+    *   **Criadouro:** Lógica de criação no "Criadouro de Homúnculos".
+7.  **Quimeras/Híbridos:** (Classes Java para Entidades Mob, com sistema de fusão)
+    *   **Fusão:** Implementar a lógica de fusão de dois mobs (mesma espécie ou compatível), herdando características.
+    *   **Exemplos:** Porco + Creeper = Porco Explosivo; Zumbi + Esqueleto = Zumbi Arqueiro; Aranha + Enderman = Aranha Teleportadora.
+    *   **Resultados Imprevisíveis:** Lógica para chance de "Quimera Aberrante" (nova entidade mob hostil).
+8.  **Golems de Vapor:** (Entidade Mob)
+    *   **Comportamento:** Golems defensivos/hostis.
+    *   **Ataques:** Socos pesados, "Sopro de Vapor" (dano de fogo, cegueira).
+    *   **Drops:** Componentes de engrenagens, barras de ferro/cobre.
+9.  **Fadas da Essência:** (Entidade Mob)
+    *   **Comportamento:** Criaturas voadoras. Concedem buffs temporários ou levam a recursos se abordadas pacificamente. Atacam se provocadas.
+    *   **Drops:** Essência Arcana (novo item), Pó de Fada (novo item).
+10. **Alquimista Louco:** (Entidade Mini-Chefe Errante)
+    *   **Comportamento:** Errático, lança poções, transmuta blocos, invoca Elementais de Essência.
+    *   **Drops:** Frascos de poções raras, livros de alquimia, componentes para Transmutador.
+11. **Gárgulas de Redstone:** (Entidade Mob)
+    *   **Comportamento:** Estátuas que ganham vida. Atacam corpo a corpo, emitem pulso Redstone.
+    *   **Drops:** Fragmentos de Redstone, pedras gravadas.
+12. **Elementais de Essência Pura:** (Entidades Mob, múltiplos tipos)
+    *   **Comportamento:** Mobs etéreos, ataques elementais específicos (fogo, água, terra, ar).
+    *   **Drops:** Essência Arcana concentrada, fragmentos elementais.
+13. **Aranhas de Engrenagem:** (Entidade Mob)
+    *   **Comportamento:** Aranhas metálicas, movem-se rápido em superfícies verticais.
+    *   **Ataques:** Mordidas perfurantes (sangramento, lentidão), teias de metal (imobilizam).
+    *   **Drops:** Componentes de engrenagens, fios de metal.
+14. **Lorde da Gravidade:** (Entidade Chefe Opcional)
+    *   **Comportamento:** Flutua, manipula gravidade local.
+    *   **Ataques:** "Pulso Gravitacional", "Atração/Repulsão", "Escudo de Blocos".
+    *   **Drops:** Núcleo de Campo Magnético, Essência Gravitacional (novo item).
+15. **Quimeras Aberrantes:** (Entidade Mob Hostil)
+    *   **Comportamento:** Imprevisível, ataques aleatórios, alta resistência.
+    *   **Drops:** Fragmentos de carne mutante, Essência Aberrante (novo item).
+16. **Necromante Alquímico:** (Entidade Mob Mágico Hostil)
+    *   **Comportamento:** Revive mobs derrotados, lança maldições.
+    *   **Ataques:** Projéteis de energia escura ("Maldição da Podridão").
+    *   **Drops:** Livros de feitiços sombrios, Essência Necromântica.
+17. **Centauros Steampunk:** (Entidades Mob/Montarias)
+    *   **Comportamento:** Meio humanos, meio máquinas. Armados com armas de fogo. Podem ser hostis ou domesticáveis.
+    *   **Ataques:** Disparar projéteis de chumbo, investir.
+    *   **Domesticacão:** Usar "Óleo de Engrenagem" (novo item) para domesticar.
+    *   **Drops:** Componentes mecânicos, pólvora.
+
+---
+
+**V. Novos Biomas e Estruturas (Datapacks/Java para Geração de Mundo):**
+*   Para cada bioma e estrutura, defina as características de geração (bioma `JSON`, geradores de estrutura `JSON`/`Java`).
+*   **Floresta Lumina:** Bioma Mágico. (Geração de Árvores com brilho, grama fosforescente, flores exóticas).
+*   **Desfiladeiro da Cicatriz Alquímica:** Bioma Corrompido. (Formações rochosas bizarras, poças de "Lodo Corrompido", névoa esverdeada).
+*   **Vilas Flutuantes de Cobre:** Assentamentos Steampunk. (Plataformas flutuantes, pontes, dirigíveis).
+*   **Tumba do Homúnculo Adormecido:** Masmorra. (Quebra-cabeças Redstone/alquimia, armadilhas).
+*   **Montanhas de Cristal Ressonante:** Bioma Mágico. (Formações gigantes de cristais).
+*   **Laboratório Arcano Submerso:** Estrutura Subaquática. (Ruínas antigas, vestígios de máquinas).
+*   **Fábrica Abandonada de Ferro:** Estrutura Steampunk. (Chaminés enferrujadas, engrenagens paradas).
+*   **Coliseu do Pecado:** Estrutura de Combate. (Arena antiga, rituais de invocação de Homúnculos).
+*   **Pântano da Transmutação Residual:** Bioma Perigoso. (Névoa constante, matéria transmutada instável).
+*   **Cidade Subterrânea de Mecanistas:** Assentamento NPC. (Forjas a vapor, máquinas subterrâneas).
+
+---
+
+**VI. Itens e Equipamentos (Classes Java, JSON para Assets/Receitas):**
+*   Para cada item/armadura/ferramenta, criar a Classe Java, JSON de modelo e receita.
+*   **Armadura do Alquimista Elemental:** Set Bonus (resistência elemental, velocidade de conjuração), Habilidade Ativa (escudo elemental).
+*   **Espada da Ressonância:** Habilidade (dano extra proporcional a Redstone próxima), Habilidade Ativa (pulso Redstone).
+*   **Escudo Defletor de Vapor:** Habilidade (refletir projéteis com energia a vapor).
+*   **Luvas do Manipulador de Engrenagens:** Habilidade (interação com Redstone/máquinas), Habilidade Ativa (girar engrenagens, desativar Redstone).
+*   **Botas de Levitação Propulsora:** Habilidade (flutuar, saltos aprimorados), Custo (Células Voltaicas/Óleo Refinado).
+*   **Elmo do Vidente Arcana:** Habilidade (revela auras, localização de itens/pontos fracos), Custo (Mana).
+*   **Picareta de Transmutação Essencial:** Habilidade (chance de transmutar bloco minerado), Custo (durabilidade, Essência de Transmutação).
+*   **Arma de Raios Tesla Portátil:** Habilidade (dispara pulsos elétricos, atordoa, dano em cadeia), Munição (Células Voltaicas).
+*   **Glaive de Gravidade:** Habilidade (empurrar/puxar inimigos), Habilidade Ativa (campo gravitacional).
+*   **Pingente de Ressonância Mágica:** Habilidade (armzena energia mágica, ativa feitiço sem Mana), Recarga.
+*   **Capa de Camuflagem Arcana:** Habilidade (invisibilidade em biomas mágicos/baixa luz), Custo (Essência Arcana).
+*   **Saco sem Fundo da Gula:** Habilidade (inventário infinito para itens específicos), Efeito Colateral (Exaustão Compulsiva).
+*   **Cajado da Inveja (Cópia de Habilidade):** Habilidade (copiar habilidade primária de mob), Custo (Mana, recarga).
+*   **Manopla da Ira Bestial:** Habilidade (aumenta dano e velocidade ao receber dano), Efeito Colateral (Fúria Descontrolada).
+*   **Amuleto do Sono Profundo:** Habilidade (dormir em qualquer lugar), Vulnerabilidade.
+
+---
+
+**VII. Lore e História Jogável/Modificável (Java, Datapacks - MCFunction/JSON, KubeJS):**
+*   **Rota Principal da História (Campanha):**
+    *   **Capítulo 1: O Despertar no Limbo:** Implementar dimensão "Limbo da Verdade" (Java/Datapack WorldGen). Lógica de spawn inicial do jogador, puzzles tutoriais (MCFunction/KubeJS). Lógica de "expulsão" para o Overworld com perda de memória (Java/KubeJS).
+    *   **Capítulo 2: Os Ecos do Passado:** Implementar "Cicratrizes Alquímicas", "Fragmentos Steampunk" (Datapack WorldGen). Lógica de NPCs (Alquimistas Exilados, Engenheiros Loucos, Aldeões Assustados) com side-quests (KubeJS/Java).
+    *   **Capítulo 3: A Ascensão da Corrupção:** Lógica de "Invasões da Matéria Corrompida" (eventos Java/Datapack). Lógica de spawn de "Homúnculos Menores" (eventos Java/Datapack). Lógica para construção do Transmutador.
+    *   **Capítulo 4: A Procura pelos Pecados Capitais:** Lógica de caça aos 7 Homúnculos (tracking de derrotas via Avanços/NBT do jogador).
+    *   **Capítulo 5: O Red Wither e o Ritual da Pedra Filosofal:** Lógica de despertar do Red Wither. Lógica para obtenção do Bloco de Comando Limitado (ritual específico do Red Wither). Lógica de aprimoramento da Pedra Filosofal.
+    *   **Capítulo 6: O Coração do Wither Storm e a Verdade Revelada:** Lógica de manifestação do Red Wither Storm (evento global Java/Datapack). Lógica para armadilha/plano para expor e aprisionar o Coração (Java/KubeJS). Revelação da lore (textos via KubeJS/Datapack).
+    *   **Capítulo 7: O Confronto Final: O Pai e o Destino do Mundo:** Lógica de retorno ao Limbo da Verdade (Java). Batalha contra o Pai (Java).
+    *   **Múltiplos Finais:** Implementar lógica para os 3 finais (Restauração, Dominação, Sacrifício) com base nas ações do jogador (rastrear via NBT, avanços, ou sistema de "karma" Java).
+*   **Side Quests e Rotas de Facção (KubeJS/Java para Lógica de Quests):**
+    *   Ordem dos Alquimistas Sábios, Liga dos Engenheiros da Fumaça, Cultistas do Pecado. Implementar missões, recompensas e sistema de reputação.
+*   **Quests de Especialização:** Mestre da Transmutação, Arquiteto de Redstone, Caçador de Quimeras.
+*   **Exploração de Dimensões Menores:** Implementar "Plano Elemental" e "Reino das Máquinas Despertas" (Java para dimensões, Datapacks para geração de mundo).
+*   **Desafios de Sobrevivência e Eventos Mundiais:** Implementar "Enxames Corrompidos", "Tempestades de Vapor", "Anomalias Gravitacionais" (eventos Java/Datapacks).
+
+---
+
+**VIII. O Portão da Verdade (Java, Datapacks - MCFunction/JSON):**
+*   **Dimensão Própria: "O Limbo da Verdade":**
+    *   **Gerador de Mundo:** Personalizar a geração com paisagens fragmentadas, ruínas, névoa etérea.
+    *   **Início do Jogo:** Lógica para forçar o jogador a começar nesta dimensão, e o tutorial de Redstone/Alquimia.
+    *   **Primeira Transição:** Lógica para expelir o jogador para o Overworld e "limpar" memórias.
+    *   **Retorno Controlado (Endgame):** Lógica para exigir "Coração do Wither Storm aprisionado" e "Pedra Filosofal Aprimorada" para reabrir o portal. Ritual de abertura em "Marca da Verdade".
+*   **Função do Portão:** Implementar a concessão de habilidades passivas/conhecimentos em troca de custo (vida máxima, debuffs).
+*   **Punição da Troca Equivalente:** Lógica para efeitos negativos severos ao tentar "trapacear" o Portão.
+*   **Guardião Final:** Integrar a batalha com o Pai como o guardião final.
+
+---
+
+**IX. Mecânicas Avançadas (Java, JSON, KubeJS, MCFunction):**
+*   **Conversor de Sinais Universais:** Bloco que converte sinais entre Redstone, vapor, magia, som. GUI para configuração.
+*   **Impressor de Códigos Rúnicos:** Máquina que grava runas em blocos/armas/circuitos. Define como "mesa de programação mística".
+*   **Condensador de Fluxo Energético:** Bloco que armazena múltiplas fontes de energia e as redistribui (fio/wireless).
+*   **Fusão de Circuitos (Matriz de Compactação):** Bloco que junta componentes de Redstone em um único bloco.
+*   **Servidor Alquímico:** Máquina que executa "receitas" automaticamente via sinais.
+
+**X. Automação Inteligente (Java, JSON, KubeJS, MCFunction):**
+*   **Scanner de Área Modular:** Bloco que detecta blocos/mobs/temperatura/umidade/gravidade/corrupção e envia dados como sinais.
+*   **Executor de Rotina (Macro Executor):** Sistema para programar sequências de ações com delay, condição, repetição (usando "cartões de rotina" como itens).
+*   **Sonda Subterrânea:** Robô que cava túneis e envia mapa de calor de minérios.
+*   **Golem Engenheiro:** Entidade Companheira que conserta máquinas, realinha engrenagens, constrói.
+*   **Gerador de Ilusões Holográficas:** Bloco que cria "mobs falsos" ou imagens de blocos para enganar/proteger.
+
+**XI. Mecânicas de Transporte (Java, JSON):**
+*   **Trilhos Pneumáticos:** Novos tipos de trilhos que disparam carrinhos a alta velocidade.
+*   **Portal de Carga Logística:** Bloco multibloco que teleporta itens.
+*   **Drone de Transporte:** Entidade autômata voadora que carrega itens.
+*   **Túnel Móvel (Escavador de Fronteira):** Bloco frontal que cava um túnel e empurra uma estrutura.
+
+**XII. Defesa & Ataque Tecnológico (Java, JSON):**
+*   **Torres de Tesla Móveis:** Entidades Torretas que se movem e disparam raios.
+*   **Barreira de Campo Estático:** Bloco que cria um campo elétrico semicircular.
+*   **Sentinela de Análise:** Entidade Câmera voadora que patrulha e detecta intrusos.
+*   **Detector de Intenção Hostil:** Bloco que detecta IA agressiva de mobs ou jogador mirando arma.
+
+**XIII. Tecnologia Híbrida (Magia + Ciência) (Java, JSON):**
+*   **Refinador de Essência:** Bloco que purifica Essência de Alquimia.
+*   **Bateria Rúnica:** Item que armazena Mana.
+*   **Catalisador Temporal:** Bloco que acelera tempo de crescimento/fundição/transmutação/crafts.
+*   **Prisma de Redirecionamento:** Bloco óptico que reflete feitiços/raios/sinais.
+*   **Scanner de DNA Alquímico:** Bloco que extrai "essência genética" de mobs.
+
+**XIV. Mecânicas de Construção (Java, JSON, Datapacks/KubeJS):**
+*   **Projetor de Blueprint:** Bloco que projeta estrutura "fantasma".
+*   **Compilador de Estrutura Modular:** Bloco que lê padrões de blocos e grava como estrutura reutilizável.
+
+---
+
+**Instrução Final para a IA:**
+"Com base em todos os requisitos detalhados acima, gere o código-fonte COMPLETO, funcional e semanticamente correto para o mod 'Ciência & Magia'
