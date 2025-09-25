@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " Q ",
+    "RSR",
+    " Q "
+  ],
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result": {
+    "item": "modcienciamagia:cristal_resonante",
+    "count": 1
+  }
+}

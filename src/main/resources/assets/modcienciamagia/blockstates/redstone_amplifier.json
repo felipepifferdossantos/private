@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,powered=false": {
+      "model": "modcienciamagia:block/redstone_amplifier",
+      "y": 90
+    },
+    "facing=east,powered=true": {
+      "model": "modcienciamagia:block/redstone_amplifier_on",
+      "y": 90
+    },
+    "facing=north,powered=false": {
+      "model": "modcienciamagia:block/redstone_amplifier"
+    },
+    "facing=north,powered=true": {
+      "model": "modcienciamagia:block/redstone_amplifier_on"
+    },
+    "facing=south,powered=false": {
+      "model": "modcienciamagia:block/redstone_amplifier",
+      "y": 180
+    },
+    "facing=south,powered=true": {
+      "model": "modcienciamagia:block/redstone_amplifier_on",
+      "y": 180
+    },
+    "facing=west,powered=false": {
+      "model": "modcienciamagia:block/redstone_amplifier",
+      "y": 270
+    },
+    "facing=west,powered=true": {
+      "model": "modcienciamagia:block/redstone_amplifier_on",
+      "y": 270
+    }
+  }
+}

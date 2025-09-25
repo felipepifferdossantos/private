@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RLR",
+    "RCR",
+    "BBB"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "L": {
+      "item": "minecraft:redstone_lamp"
+    },
+    "C": {
+      "item": "modcienciamagia:cristal_resonante"
+    },
+    "B": {
+      "item": "minecraft:stone_slab"
+    }
+  },
+  "result": {
+    "item": "modcienciamagia:redstone_amplifier",
+    "count": 1
+  }
+}

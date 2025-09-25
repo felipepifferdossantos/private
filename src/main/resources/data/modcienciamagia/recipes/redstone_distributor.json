@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IQI",
+    "RER",
+    "IQI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "E": {
+      "item": "modcienciamagia:engrenagem_de_precisao"
+    }
+  },
+  "result": {
+    "item": "modcienciamagia:redstone_distributor",
+    "count": 1
+  }
+}

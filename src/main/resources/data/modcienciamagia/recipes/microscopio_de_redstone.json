@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "RSR",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:spyglass"
+    }
+  },
+  "result": {
+    "item": "modcienciamagia:microscopio_de_redstone",
+    "count": 1
+  }
+}

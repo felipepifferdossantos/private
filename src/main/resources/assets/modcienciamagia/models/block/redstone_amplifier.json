@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/repeater",
+  "textures": {
+    "particle": "modcienciamagia:block/redstone_amplifier_off",
+    "slab": "minecraft:block/redstone_dust_dot",
+    "top": "modcienciamagia:block/redstone_amplifier_off",
+    "unlit": "minecraft:block/redstone_torch_off"
+  }
+}
