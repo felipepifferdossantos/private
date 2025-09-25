@@ -17,10 +17,19 @@ public class ItemInit {
     public static final RegistryObject<Item> MECANISMO_DE_BALANCA = ITEMS.register("mecanismo_de_balanca", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MICROSCOPIO_DE_REDSTONE = ITEMS.register("microscopio_de_redstone", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CRISTAL_DE_CALIBRACAO = ITEMS.register("cristal_de_calibracao", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> CIRCULO_DE_TRANSMUTACAO_GRAVADO = ITEMS.register("circulo_de_transmutacao_gravado", () -> new Item(new Item.Properties()));
 
     // Block Items
     public static final RegistryObject<Item> REDSTONE_DISTRIBUTOR_ITEM = ITEMS.register("redstone_distributor",
             () -> new BlockItem(BlockInit.REDSTONE_DISTRIBUTOR.get(), new Item.Properties()));
     public static final RegistryObject<Item> REDSTONE_AMPLIFIER_ITEM = ITEMS.register("redstone_amplifier",
             () -> new BlockItem(BlockInit.REDSTONE_AMPLIFIER.get(), new Item.Properties()));
+    public static final RegistryObject<Item> WEIGHT_SENSOR_ITEM = ITEMS.register("weight_sensor",
+            () -> new BlockItem(BlockInit.WEIGHT_SENSOR.get(), new Item.Properties()));
+    public static final RegistryObject<Item> FACE_SENSOR_ITEM = ITEMS.register("face_sensor",
+            () -> new BlockItem(BlockInit.FACE_SENSOR.get(), new Item.Properties()));
+    public static final RegistryObject<Item> ATTRIBUTE_METER_ITEM = ITEMS.register("attribute_meter",
+            () -> new BlockItem(BlockInit.ATTRIBUTE_METER.get(), new Item.Properties()));
+    public static final RegistryObject<Item> ALCHEMICAL_TRANSMUTATOR_ITEM = ITEMS.register("alchemical_transmutator",
+            () -> new BlockItem(BlockInit.ALCHEMICAL_TRANSMUTATOR.get(), new Item.Properties()));
 }

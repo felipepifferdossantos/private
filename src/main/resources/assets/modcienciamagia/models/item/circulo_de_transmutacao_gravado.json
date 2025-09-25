@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "modcienciamagia:item/circulo_de_transmutacao_gravado"
+  }
+}

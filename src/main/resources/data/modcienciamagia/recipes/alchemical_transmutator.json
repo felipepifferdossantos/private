@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OBO",
+    "BCB",
+    "OBO"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "B": {
+      "item": "minecraft:redstone_block"
+    },
+    "C": {
+      "item": "modcienciamagia:circulo_de_transmutacao_gravado"
+    }
+  },
+  "result": {
+    "item": "modcienciamagia:alchemical_transmutator",
+    "count": 1
+  }
+}

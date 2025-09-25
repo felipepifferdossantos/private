@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "modcienciamagia:block/face_sensor_top",
+    "front": "modcienciamagia:block/face_sensor_front",
+    "side": "modcienciamagia:block/face_sensor_side",
+    "bottom": "modcienciamagia:block/face_sensor_bottom"
+  }
+}

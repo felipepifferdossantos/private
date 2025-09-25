@@ -4,7 +4,12 @@
   "item.modcienciamagia.mecanismo_de_balanca": "Scale Mechanism",
   "item.modcienciamagia.microscopio_de_redstone": "Redstone Microscope",
   "item.modcienciamagia.cristal_de_calibracao": "Calibration Crystal",
+  "item.modcienciamagia.circulo_de_transmutacao_gravado": "Engraved Transmutation Circle",
 
   "block.modcienciamagia.redstone_distributor": "Redstone Distributor",
-  "block.modcienciamagia.redstone_amplifier": "Redstone Amplifier"
+  "block.modcienciamagia.redstone_amplifier": "Redstone Amplifier",
+  "block.modcienciamagia.weight_sensor": "Weight Sensor",
+  "block.modcienciamagia.face_sensor": "Face Sensor",
+  "block.modcienciamagia.attribute_meter": "Attribute Meter",
+  "block.modcienciamagia.alchemical_transmutator": "Alchemical Transmutator"
 }

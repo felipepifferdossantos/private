@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "modcienciamagia:block/face_sensor",
+      "x": 90
+    },
+    "facing=up": {
+      "model": "modcienciamagia:block/face_sensor",
+      "x": -90
+    },
+    "facing=north": {
+      "model": "modcienciamagia:block/face_sensor"
+    },
+    "facing=south": {
+      "model": "modcienciamagia:block/face_sensor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "modcienciamagia:block/face_sensor",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "modcienciamagia:block/face_sensor",
+      "y": 90
+    }
+  }
+}

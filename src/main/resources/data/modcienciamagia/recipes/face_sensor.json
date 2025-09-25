@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GRG",
+    "DMD",
+    "GRG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "D": {
+      "item": "minecraft:daylight_detector"
+    },
+    "M": {
+      "item": "modcienciamagia:microscopio_de_redstone"
+    }
+  },
+  "result": {
+    "item": "modcienciamagia:face_sensor",
+    "count": 1
+  }
+}
