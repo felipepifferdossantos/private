@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ARA",
+    "RSR",
+    "ARA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:wither_skeleton_skull"
+    }
+  },
+  "result": {
+    "item": "modcienciamagia:transmuted_wither_skull",
+    "count": 1
+  }
+}

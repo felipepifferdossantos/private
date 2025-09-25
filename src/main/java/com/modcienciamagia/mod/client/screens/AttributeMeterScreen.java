@@ -4,6 +4,9 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.modcienciamagia.mod.ModCienciaMagia;
 import com.modcienciamagia.mod.core.menu.AttributeMeterMenu;
 import net.minecraft.client.gui.GuiGraphics;
+import com.modcienciamagia.mod.networking.PacketHandler;
+import com.modcienciamagia.mod.networking.packet.RecalibrateAttributePacket;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -21,6 +24,23 @@ public class AttributeMeterScreen extends AbstractContainerScreen<AttributeMeter
     @Override
     protected void init() {
         super.init();
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        // Example for Attack Damage
+        this.addRenderableWidget(new Button.Builder(Component.literal("+"),
+                (button) -> {
+                    PacketHandler.INSTANCE.sendToServer(new RecalibrateAttributePacket(this.menu.blockEntity.getBlockPos(), "attack_damage", true));
+                })
+                .bounds(x + 50, y + 34, 20, 20)
+                .build());
+
+        this.addRenderableWidget(new Button.Builder(Component.literal("-"),
+                (button) -> {
+                    PacketHandler.INSTANCE.sendToServer(new RecalibrateAttributePacket(this.menu.blockEntity.getBlockPos(), "attack_damage", false));
+                })
+                .bounds(x + 75, y + 34, 20, 20)
+                .build());
     }
 
     @Override

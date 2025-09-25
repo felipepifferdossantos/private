@@ -1,0 +1,9 @@
+{
+  "type": "modcienciamagia:alchemical_transmutation",
+  "input": {
+    "item": "minecraft:dirt"
+  },
+  "output": {
+    "item": "minecraft:sand"
+  }
+}

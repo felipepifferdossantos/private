@@ -4,7 +4,14 @@
   "item.modcienciamagia.mecanismo_de_balanca": "Mecanismo de Balança",
   "item.modcienciamagia.microscopio_de_redstone": "Microscópio de Redstone",
   "item.modcienciamagia.cristal_de_calibracao": "Cristal de Calibração",
+  "item.modcienciamagia.philosopher_stone": "Pedra Filosofal",
   "item.modcienciamagia.circulo_de_transmutacao_gravado": "Círculo de Transmutação Gravado",
+  "item.modcienciamagia.transmuted_wither_skull": "Crânio de Wither Transmutado",
+  "item.modcienciamagia.corrupted_heart_fragment": "Fragmento do Coração Corrompido",
+  "item.modcienciamagia.transmutation_essence": "Essência de Transmutação",
+  "item.modcienciamagia.attribute_essence": "Essência de Atributo",
+  "item.modcienciamagia.gravitational_fragment": "Fragmento Gravitacional",
+  "item.modcienciamagia.glaive_of_gravity": "Glaive da Gravidade",
 
   "block.modcienciamagia.redstone_distributor": "Distribuidor de Redstone",
   "block.modcienciamagia.redstone_amplifier": "Sinalizador de Redstone",
@@ -17,5 +24,11 @@
   "block.modcienciamagia.aged_copper_block": "Bloco de Cobre Envelhecido",
   "block.modcienciamagia.polished_wood_planks": "Tábuas de Madeira Polida",
   "block.modcienciamagia.tempered_glass": "Vidro Temperado",
-  "block.modcienciamagia.decorative_gear": "Engrenagem Decorativa"
+  "block.modcienciamagia.decorative_gear": "Engrenagem Decorativa",
+  "block.modcienciamagia.corrupted_matter_block": "Bloco de Matéria Corrompida",
+  "block.modcienciamagia.corrupted_redstone_block": "Bloco de Redstone Corrompido",
+
+  "effect.modcienciamagia.corruption": "Corrupção",
+
+  "biome.modcienciamagia.floresta_lumina": "Floresta Lumina"
 }

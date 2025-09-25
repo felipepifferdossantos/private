@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " OF",
+    " IO",
+    "I  "
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "F": {
+      "item": "modcienciamagia:gravitational_fragment"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "modcienciamagia:glaive_of_gravity",
+    "count": 1
+  }
+}

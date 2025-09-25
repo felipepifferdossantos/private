@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "modcienciamagia:tumba_homunculo",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 34,
+    "separation": 8,
+    "salt": 14357619
+  }
+}

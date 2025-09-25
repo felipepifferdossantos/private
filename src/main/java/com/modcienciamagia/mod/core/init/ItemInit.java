@@ -6,10 +6,15 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import com.modcienciamagia.mod.core.items.PhilosopherStoneItem;
 import net.minecraft.world.item.BlockItem;
 
 public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ModCienciaMagia.MODID);
+
+    // Catalyst Items
+    public static final RegistryObject<Item> PHILOSOPHER_STONE = ITEMS.register("philosopher_stone",
+            () -> new PhilosopherStoneItem(new Item.Properties().fireResistant()));
 
     // Basic Crafting Components
     public static final RegistryObject<Item> ENGRENAGEM_DE_PRECISAO = ITEMS.register("engrenagem_de_precisao", () -> new Item(new Item.Properties()));
@@ -42,4 +47,24 @@ public class ItemInit {
             () -> new BlockItem(BlockInit.TEMPERED_GLASS.get(), new Item.Properties()));
     public static final RegistryObject<Item> DECORATIVE_GEAR_ITEM = ITEMS.register("decorative_gear",
             () -> new BlockItem(BlockInit.DECORATIVE_GEAR.get(), new Item.Properties()));
+    public static final RegistryObject<Item> CORRUPTED_MATTER_BLOCK_ITEM = ITEMS.register("corrupted_matter_block",
+            () -> new BlockItem(BlockInit.CORRUPTED_MATTER_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> CORRUPTED_REDSTONE_BLOCK_ITEM = ITEMS.register("corrupted_redstone_block",
+            () -> new BlockItem(BlockInit.CORRUPTED_REDSTONE_BLOCK.get(), new Item.Properties()));
+
+    // Boss-related Items
+    public static final RegistryObject<Item> TRANSMUTED_WITHER_SKULL = ITEMS.register("transmuted_wither_skull",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> CORRUPTED_HEART_FRAGMENT = ITEMS.register("corrupted_heart_fragment",
+            () -> new Item(new Item.Properties().fireResistant()));
+    public static final RegistryObject<Item> TRANSMUTATION_ESSENCE = ITEMS.register("transmutation_essence",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ATTRIBUTE_ESSENCE = ITEMS.register("attribute_essence",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> GRAVITATIONAL_FRAGMENT = ITEMS.register("gravitational_fragment",
+            () -> new Item(new Item.Properties()));
+
+    // Weapons
+    public static final RegistryObject<Item> GLAIVE_OF_GRAVITY = ITEMS.register("glaive_of_gravity",
+            () -> new GlaiveOfGravityItem(new Item.Properties().stacksTo(1)));
 }

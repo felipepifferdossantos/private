@@ -8,6 +8,7 @@ import com.modcienciamagia.mod.core.blocks.AttributeMeterBlock;
 import com.modcienciamagia.mod.core.blocks.FaceSensorBlock;
 import com.modcienciamagia.mod.core.blocks.WeightSensorBlock;
 import net.minecraft.world.level.block.Block;
+import com.modcienciamagia.mod.core.blocks.CorruptedMatterBlock;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.DeferredRegister;
@@ -42,4 +43,8 @@ public class BlockInit {
             () -> new Block(BlockBehaviour.Properties.of().strength(3.0f).noOcclusion()));
     public static final RegistryObject<Block> DECORATIVE_GEAR = BLOCKS.register("decorative_gear",
             () -> new DirectionalBlock(BlockBehaviour.Properties.of().strength(1.5f).noOcclusion()));
+    public static final RegistryObject<Block> CORRUPTED_MATTER_BLOCK = BLOCKS.register("corrupted_matter_block",
+            () -> new CorruptedMatterBlock(BlockBehaviour.Properties.of().strength(50.0f, 1200.0f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> CORRUPTED_REDSTONE_BLOCK = BLOCKS.register("corrupted_redstone_block",
+            () -> new Block(BlockBehaviour.Properties.of().strength(5.0f).requiresCorrectToolForDrops()));
 }

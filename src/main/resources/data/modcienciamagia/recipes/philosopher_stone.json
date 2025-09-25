@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "RSR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "modcienciamagia:philosopher_stone",
+    "count": 1
+  }
+}

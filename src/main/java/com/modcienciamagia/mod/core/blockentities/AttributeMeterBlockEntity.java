@@ -18,8 +18,20 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import com.google.common.collect.Multimap;
+import com.modcienciamagia.mod.core.init.ItemInit;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.TieredItem;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.UUID;
 
 public class AttributeMeterBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2); // 0: Input, 1: Catalyst
@@ -75,5 +87,57 @@ public class AttributeMeterBlockEntity extends BlockEntity implements MenuProvid
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, AttributeMeterBlockEntity pBlockEntity) {
         // Tick logic can be added here if needed, e.g., for processing over time.
+    }
+
+    public void recalibrate(String attributeId, boolean increase, ServerPlayer player) {
+        ItemStack tool = this.itemHandler.getStackInSlot(0);
+        ItemStack catalyst = this.itemHandler.getStackInSlot(1);
+
+        if (tool.isEmpty() || !(tool.getItem() instanceof TieredItem) || catalyst.isEmpty() || !catalyst.is(ItemInit.ATTRIBUTE_ESSENCE.get())) {
+            return;
+        }
+
+        if (player.experienceLevel < 1 && !player.isCreative()) {
+            return;
+        }
+
+        // Consume resources
+        if(!player.isCreative()) {
+            player.giveExperienceLevels(-1);
+            catalyst.shrink(1);
+        }
+
+        CompoundTag nbt = tool.getOrCreateTag();
+        ListTag modifiers = nbt.getList("AttributeModifiers", 10);
+
+        boolean foundModifier = false;
+        if ("attack_damage".equals(attributeId)) {
+            for (int i = 0; i < modifiers.size(); i++) {
+                CompoundTag modifierTag = modifiers.getCompound(i);
+                if ("minecraft:generic.attack_damage".equals(modifierTag.getString("AttributeName"))) {
+                    double amount = modifierTag.getDouble("Amount");
+                    double newAmount = increase ? amount + 0.5 : amount - 0.5;
+                    // Prevent going below 0 or into negative damage
+                    if (newAmount < 0) newAmount = 0;
+                    modifierTag.putDouble("Amount", newAmount);
+                    foundModifier = true;
+                    break;
+                }
+            }
+             if (!foundModifier && increase) {
+                CompoundTag newModifier = new CompoundTag();
+                newModifier.putString("AttributeName", "minecraft:generic.attack_damage");
+                newModifier.putString("Name", "generic.attack_damage");
+                newModifier.putDouble("Amount", 0.5);
+                newModifier.putInt("Operation", 0);
+                newModifier.putUUID("UUID", UUID.randomUUID());
+                newModifier.putString("Slot", "mainhand");
+                modifiers.add(newModifier);
+            }
+        }
+
+        nbt.put("AttributeModifiers", modifiers);
+        tool.setTag(nbt);
+        setChanged();
     }
 }

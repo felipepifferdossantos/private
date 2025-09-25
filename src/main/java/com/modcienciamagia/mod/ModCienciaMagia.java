@@ -5,8 +5,13 @@ import com.modcienciamagia.mod.client.screens.AlchemicalTransmutatorScreen;
 import com.modcienciamagia.mod.client.screens.AttributeMeterScreen;
 import com.modcienciamagia.mod.core.init.BlockEntityInit;
 import com.modcienciamagia.mod.core.init.BlockInit;
+import com.modcienciamagia.mod.core.init.BiomeInit;
+import com.modcienciamagia.mod.core.init.EffectInit;
 import com.modcienciamagia.mod.core.init.ItemInit;
 import com.modcienciamagia.mod.core.init.MenuInit;
+import com.modcienciamagia.mod.core.init.StructureInit;
+import com.modcienciamagia.mod.core.init.RecipeInit;
+import com.modcienciamagia.mod.networking.PacketHandler;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -32,6 +37,12 @@ public class ModCienciaMagia {
         BlockInit.BLOCKS.register(modEventBus);
         BlockEntityInit.BLOCK_ENTITIES.register(modEventBus);
         MenuInit.MENUS.register(modEventBus);
+        EntityInit.ENTITIES.register(modEventBus);
+        EffectInit.EFFECTS.register(modEventBus);
+        BiomeInit.BIOMES.register(modEventBus);
+        StructureInit.STRUCTURES.register(modEventBus);
+        RecipeInit.RECIPE_SERIALIZERS.register(modEventBus);
+        RecipeInit.RECIPE_TYPES.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
@@ -40,6 +51,7 @@ public class ModCienciaMagia {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("Setting up Ciencia e Magia Mod");
+        PacketHandler.register();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
@@ -57,6 +69,16 @@ public class ModCienciaMagia {
             event.accept(ItemInit.MICROSCOPIO_DE_REDSTONE);
             event.accept(ItemInit.CRISTAL_DE_CALIBRACAO);
             event.accept(ItemInit.CIRCULO_DE_TRANSMUTACAO_GRAVADO);
+            event.accept(ItemInit.PHILOSOPHER_STONE);
+            event.accept(ItemInit.TRANSMUTED_WITHER_SKULL);
+            event.accept(ItemInit.CORRUPTED_HEART_FRAGMENT);
+            event.accept(ItemInit.TRANSMUTATION_ESSENCE);
+            event.accept(ItemInit.ATTRIBUTE_ESSENCE);
+            event.accept(ItemInit.GRAVITATIONAL_FRAGMENT);
+        }
+
+        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(ItemInit.GLAIVE_OF_GRAVITY);
         }
 
         if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
@@ -77,6 +99,8 @@ public class ModCienciaMagia {
             event.accept(ItemInit.POLISHED_WOOD_PLANKS_ITEM);
             event.accept(ItemInit.TEMPERED_GLASS_ITEM);
             event.accept(ItemInit.DECORATIVE_GEAR_ITEM);
+            event.accept(ItemInit.CORRUPTED_REDSTONE_BLOCK_ITEM);
+            event.accept(ItemInit.CORRUPTED_MATTER_BLOCK_ITEM);
         }
     }
 }

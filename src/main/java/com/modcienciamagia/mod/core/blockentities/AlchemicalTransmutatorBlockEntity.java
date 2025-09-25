@@ -18,11 +18,23 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import com.modcienciamagia.mod.core.init.ItemInit;
+import com.modcienciamagia.mod.core.recipes.AlchemicalTransmutationRecipe;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeManager;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 public class AlchemicalTransmutatorBlockEntity extends BlockEntity implements MenuProvider {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(3); // 0: Input, 1: Catalyst, 2: Output
+    private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            setChanged();
+        }
+    };
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     public AlchemicalTransmutatorBlockEntity(BlockPos pPos, BlockState pBlockState) {
@@ -74,8 +86,65 @@ public class AlchemicalTransmutatorBlockEntity extends BlockEntity implements Me
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, AlchemicalTransmutatorBlockEntity pBlockEntity) {
-        // Transmutation logic will be added here later.
-        // It will check for a valid recipe, catalyst, and space in the output slot.
-        // If all conditions are met, it will consume input, damage catalyst, and produce output.
+        if(pLevel.isClientSide()) {
+            return;
+        }
+
+        SimpleContainer inventory = new SimpleContainer(pBlockEntity.itemHandler.getSlots());
+        for (int i = 0; i < pBlockEntity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, pBlockEntity.itemHandler.getStackInSlot(i));
+        }
+
+        Optional<AlchemicalTransmutationRecipe> match = pLevel.getRecipeManager()
+                .getRecipeFor(AlchemicalTransmutationRecipe.Type.INSTANCE, inventory, pLevel);
+
+        if(match.isPresent()) {
+            ItemStack catalyst = pBlockEntity.itemHandler.getStackInSlot(1);
+            if (catalyst.is(ItemInit.PHILOSOPHER_STONE.get())) {
+                craftItem(pBlockEntity, match.get());
+            }
+        }
+    }
+
+    private static void craftItem(AlchemicalTransmutatorBlockEntity pBlockEntity, AlchemicalTransmutationRecipe recipe) {
+        Level level = pBlockEntity.level;
+        SimpleContainer inventory = new SimpleContainer(pBlockEntity.itemHandler.getSlots());
+        for (int i = 0; i < pBlockEntity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, pBlockEntity.itemHandler.getStackInSlot(i));
+        }
+
+        if(hasRecipe(pBlockEntity)) {
+            pBlockEntity.itemHandler.extractItem(0,1, false);
+            pBlockEntity.itemHandler.getStackInSlot(1).hurt(1, level.random, null);
+            pBlockEntity.itemHandler.setStackInSlot(2, new ItemStack(recipe.getResultItem(level.registryAccess()).getItem(),
+                    pBlockEntity.itemHandler.getStackInSlot(2).getCount() + 1));
+        }
+    }
+
+    private static boolean hasRecipe(AlchemicalTransmutatorBlockEntity entity) {
+        Level level = entity.level;
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
+
+        Optional<AlchemicalTransmutationRecipe> match = level.getRecipeManager()
+                .getRecipeFor(AlchemicalTransmutationRecipe.Type.INSTANCE, inventory, level);
+
+        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
+                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem(level.registryAccess()))
+                && hasCatalystInSlot(entity);
+    }
+
+    private static boolean hasCatalystInSlot(AlchemicalTransmutatorBlockEntity entity) {
+        return entity.itemHandler.getStackInSlot(1).is(ItemInit.PHILOSOPHER_STONE.get());
+    }
+
+    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
+        return inventory.getItem(2).getItem() == output.getItem() || inventory.getItem(2).isEmpty();
+    }
+
+    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
+        return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount();
     }
 }
