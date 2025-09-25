@@ -11,5 +11,11 @@
   "block.modcienciamagia.weight_sensor": "Weight Sensor",
   "block.modcienciamagia.face_sensor": "Face Sensor",
   "block.modcienciamagia.attribute_meter": "Attribute Meter",
-  "block.modcienciamagia.alchemical_transmutator": "Alchemical Transmutator"
+  "block.modcienciamagia.alchemical_transmutator": "Alchemical Transmutator",
+
+  "block.modcienciamagia.aged_iron_block": "Aged Iron Block",
+  "block.modcienciamagia.aged_copper_block": "Aged Copper Block",
+  "block.modcienciamagia.polished_wood_planks": "Polished Wood Planks",
+  "block.modcienciamagia.tempered_glass": "Tempered Glass",
+  "block.modcienciamagia.decorative_gear": "Decorative Gear"
 }

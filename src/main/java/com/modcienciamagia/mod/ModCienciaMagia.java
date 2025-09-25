@@ -70,5 +70,13 @@ public class ModCienciaMagia {
             event.accept(ItemInit.ATTRIBUTE_METER_ITEM);
             event.accept(ItemInit.ALCHEMICAL_TRANSMUTATOR_ITEM);
         }
+
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ItemInit.AGED_IRON_BLOCK_ITEM);
+            event.accept(ItemInit.AGED_COPPER_BLOCK_ITEM);
+            event.accept(ItemInit.POLISHED_WOOD_PLANKS_ITEM);
+            event.accept(ItemInit.TEMPERED_GLASS_ITEM);
+            event.accept(ItemInit.DECORATIVE_GEAR_ITEM);
+        }
     }
 }

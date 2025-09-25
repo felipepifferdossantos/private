@@ -11,5 +11,11 @@
   "block.modcienciamagia.weight_sensor": "Medidor de Peso",
   "block.modcienciamagia.face_sensor": "Medidor de Face",
   "block.modcienciamagia.attribute_meter": "Medidor de Atributos",
-  "block.modcienciamagia.alchemical_transmutator": "Transmutador Alquímico"
+  "block.modcienciamagia.alchemical_transmutator": "Transmutador Alquímico",
+
+  "block.modcienciamagia.aged_iron_block": "Bloco de Ferro Envelhecido",
+  "block.modcienciamagia.aged_copper_block": "Bloco de Cobre Envelhecido",
+  "block.modcienciamagia.polished_wood_planks": "Tábuas de Madeira Polida",
+  "block.modcienciamagia.tempered_glass": "Vidro Temperado",
+  "block.modcienciamagia.decorative_gear": "Engrenagem Decorativa"
 }

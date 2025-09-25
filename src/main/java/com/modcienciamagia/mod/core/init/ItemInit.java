@@ -32,4 +32,14 @@ public class ItemInit {
             () -> new BlockItem(BlockInit.ATTRIBUTE_METER.get(), new Item.Properties()));
     public static final RegistryObject<Item> ALCHEMICAL_TRANSMUTATOR_ITEM = ITEMS.register("alchemical_transmutator",
             () -> new BlockItem(BlockInit.ALCHEMICAL_TRANSMUTATOR.get(), new Item.Properties()));
+    public static final RegistryObject<Item> AGED_IRON_BLOCK_ITEM = ITEMS.register("aged_iron_block",
+            () -> new BlockItem(BlockInit.AGED_IRON_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> AGED_COPPER_BLOCK_ITEM = ITEMS.register("aged_copper_block",
+            () -> new BlockItem(BlockInit.AGED_COPPER_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> POLISHED_WOOD_PLANKS_ITEM = ITEMS.register("polished_wood_planks",
+            () -> new BlockItem(BlockInit.POLISHED_WOOD_PLANKS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> TEMPERED_GLASS_ITEM = ITEMS.register("tempered_glass",
+            () -> new BlockItem(BlockInit.TEMPERED_GLASS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> DECORATIVE_GEAR_ITEM = ITEMS.register("decorative_gear",
+            () -> new BlockItem(BlockInit.DECORATIVE_GEAR.get(), new Item.Properties()));
 }

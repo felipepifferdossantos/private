@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "modcienciamagia:block/decorative_gear"
+  },
+  "render_type": "cutout"
+}

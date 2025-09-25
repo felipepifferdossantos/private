@@ -8,6 +8,7 @@ import com.modcienciamagia.mod.core.blocks.AttributeMeterBlock;
 import com.modcienciamagia.mod.core.blocks.FaceSensorBlock;
 import com.modcienciamagia.mod.core.blocks.WeightSensorBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -29,4 +30,16 @@ public class BlockInit {
             () -> new AttributeMeterBlock(BlockBehaviour.Properties.of().strength(4.0f).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> ALCHEMICAL_TRANSMUTATOR = BLOCKS.register("alchemical_transmutator",
             () -> new AlchemicalTransmutatorBlock(BlockBehaviour.Properties.of().strength(5.0f).requiresCorrectToolForDrops().noOcclusion()));
+
+    // Steampunk Decorative Blocks
+    public static final RegistryObject<Block> AGED_IRON_BLOCK = BLOCKS.register("aged_iron_block",
+            () -> new Block(BlockBehaviour.Properties.of().strength(5.0f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> AGED_COPPER_BLOCK = BLOCKS.register("aged_copper_block",
+            () -> new Block(BlockBehaviour.Properties.of().strength(4.0f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> POLISHED_WOOD_PLANKS = BLOCKS.register("polished_wood_planks",
+            () -> new Block(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryObject<Block> TEMPERED_GLASS = BLOCKS.register("tempered_glass",
+            () -> new Block(BlockBehaviour.Properties.of().strength(3.0f).noOcclusion()));
+    public static final RegistryObject<Block> DECORATIVE_GEAR = BLOCKS.register("decorative_gear",
+            () -> new DirectionalBlock(BlockBehaviour.Properties.of().strength(1.5f).noOcclusion()));
 }

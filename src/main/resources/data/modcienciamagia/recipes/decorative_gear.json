@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "IEI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "E": {
+      "item": "modcienciamagia:engrenagem_de_precisao"
+    }
+  },
+  "result": {
+    "item": "modcienciamagia:decorative_gear",
+    "count": 4
+  }
+}
